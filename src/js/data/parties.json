@@ -1,0 +1,16 @@
+{
+    "alp": {"partyName":"Labor Party", "shortName": "Labor", "coalition":"","libCoalition":""},
+    "lib": {"partyName":"Liberal Party", "shortName": "Liberal", "coalition":"coalition","libCoalition":"coalition"},
+    "lnp": {"partyName":"Liberal National Party", "shortName": "Liberal Nat", "coalition":"coalition","libCoalition":"coalition"},
+    "nat": {"partyName":"National Party", "shortName": "National", "coalition":"coalition","libCoalition":""},
+    "ind": {"partyName":"Independent", "shortName": "Independent", "coalition":"","libCoalition":""},
+    "pup": {"partyName":"Palmer United Party", "shortName": "Palmer United", "coalition":"","libCoalition":""},
+    "kap": {"partyName":"Katter Party", "shortName": "Katter", "coalition":"","libCoalition":""},
+    "grn": {"partyName":"Greens", "shortName": "Greens", "coalition":"","libCoalition":""},
+    "clp": {"partyName":"Country Liberal Party", "shortName": "Country Lib", "coalition":"coalition","libCoalition":"coalition"},
+    "ldp": {"partyName":"Liberal Democratic Party", "shortName": "Liberal Dem", "coalition":"","libCoalition":""},
+    "ff": {"partyName":"Family First", "shortName": "Family First", "coalition":"","libCoalition":""},
+    "amep": {"partyName":"Motoring Enthusiasts", "shortName": "Motoring", "coalition":"","libCoalition":""},
+    "nxt": {"partyName":"Nick Xenophon Team", "shortName": "Xenophon", "coalition":"","libCoalition":""}
+
+}

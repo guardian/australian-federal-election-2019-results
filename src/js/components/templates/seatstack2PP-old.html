@@ -1,0 +1,38 @@
+<div class="seatstack {% if resultCount === TOTAL_SEATS %}seatstack--finished{% endif %}">
+    <div class="seatstack__majority">{{ MAJORITY_SEATS }} seats to win</div>
+    {% if resultCount < TOTAL_SEATS %}
+    <div class="seatstack__totals">
+        {{resultCount}}/{{TOTAL_SEATS}} seats confirmed
+    </div>
+    <a class="seatstack__results" href="http://www.theguardian.com/politics/ng-interactive/2015/may/07/live-uk-election-results-in-full">Full results &raquo;</a>
+    {% endif %}
+    <ul class="seatstack__bar seatstack__two-party">
+        {% for party in twoParty %}
+        <li {% if party.key !== 'Others' %}data-partyhover="{{party.party}}"{% endif %} data-partyname="{{party.party}}" style="width: {{(party.seats/TOTAL_SEATS)*100}}%">
+        <span class="seatstack-party-seats">{{party.seats}} seats</span>
+        <span class="seatstack-party-name">{{party.name}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% for list in [partyListLeft, partyListRight] %}
+    <ul class="seatstack-list seatstack-list--{{loop.index}}">
+        <li class="seatstack-list__item is-header">
+<!--             <span class="seatstack-list__losses is-header">losses</span>
+            <span class="seatstack-list__gains is-header">gains</span> -->
+            <span class="seatstack-list__seats is-header">seats</span>
+        </li>
+        {% for party in list %}
+        <li class="seatstack-list__item" {% if party.key !== 'Others' %}data-partyhover="{{party.key}}"{% endif %} >
+            <span class="seatstack-list__partybox" data-partyname="{{party.key}}"></span>
+            <span class="seatstack-list__party-name">{{party.name}}</span>
+            <span class="seatstack-list__party-short-name">{{party.shortName}}</span>
+
+<!--             <span class="seatstack-list__losses">{% if party.losses > 0 %}-{%endif%}{{party.losses}}</span>
+            <span class="seatstack-list__gains">{% if party.gains > 0 %}+{%endif%}{{party.gains}}</span> -->
+            <span class="seatstack-list__seats">{{party.values}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</div>

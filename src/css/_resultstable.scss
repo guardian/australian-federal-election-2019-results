@@ -1,0 +1,124 @@
+.veri-party-table {
+    border-top: 1px solid #f1f1f1;
+    clear: both;
+    padding: 5px 20px;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+
+    h2 {
+        clear: both;
+        margin-top: 20px;
+        margin-bottom: 24px;
+        line-height: 1.2;
+        font-size: 22px;
+        font-weight: normal;
+        color: #333;
+    }
+    table {
+        clear: both;
+        font-size: 14px;
+        width: 100%;
+        border-collapse: collapse;
+        font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+
+        tbody tr:hover {
+            background-color: #f7f7f7;
+        }
+
+        td,th {
+            text-align: right; // all right aligned except for party name field
+            line-height: 32px;
+        }
+        th {
+            font-weight: normal;
+            color: #767676;
+            text-transform: lowercase;
+
+            &[data-sortdirection='ascending']:after {
+                content: "\25B2";
+                margin-left: 2px;
+            }
+            &[data-sortdirection='descending']:after {
+                content: "\25BC";
+                margin-left: 2px;
+            }
+            &.selected {
+                font-weight: bold;
+            }
+        }
+        td {
+            border-top: 1px dotted #dfdfdf;
+        }
+
+        .party-name {
+            background-color: transparent;
+
+            &[data-partyname='unknown'] {
+                color: #767676;
+                font-style: italic;
+            }
+        }
+
+
+        td:nth-child(1),
+        th:nth-child(1) {
+            text-align: left;
+        }
+        td:nth-child(1),
+        th {
+            font-size: 14px;
+        }
+    }
+    .veri__blip {
+        display: none;
+    }
+    @include mq($until: mobileLandscape) {
+        td,th {
+            &:nth-child(2),&:nth-child(3),&:nth-child(4){
+                display: none;
+            }
+        }
+    }
+}
+
+.veri__party-table-fullname {
+    display: none;
+    @include mq(tablet) {
+        display: inline;
+    }
+}
+
+.veri__party-table-abbrv {
+    display: inline;
+    @include mq(tablet) {
+        display: none;
+    }
+}
+
+.veri-party-table__seat-party {
+    .veri__blip {
+        display: inline-block;
+    }
+    td:first-child {
+        font-weight: bold;
+    }
+}
+
+.veri-party-table__na {
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    color: #bdbdbd;
+}
+
+@each $party, $color in $partyColors { // always show major parties
+    .veri-party-table .veri__blip--#{$party} {
+        display: inline-block !important;
+    }
+}
+.veri-party-table__empty-msg {
+    font-family: $text-sans;
+    font-size: 16px;
+    padding-top: 48px;
+    padding-bottom: 24px;
+    width: 100%;
+    text-align: center;
+    color: #767676;
+}

@@ -1,0 +1,14 @@
+//https://stackoverflow.com/questions/37556058/are-javascript-es6-classes-of-any-use-with-asynchronous-code-bases
+
+/*
+class MyClass {
+  async doEverything() {
+    const sumOfItAll = await http.scrapeTheInternet() +
+      await new Promise((resolve, reject) =>
+        http.asyncCallback((e, result) => !e ? resolve(result) : reject(e)))
+    return this.resp = sumOfItAll
+  }
+}
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Static_methods
+*/

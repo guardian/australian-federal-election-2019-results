@@ -185,6 +185,5 @@ export class Cartogram {
 
         return {status: "updated election map"}
 
-
     }
 }

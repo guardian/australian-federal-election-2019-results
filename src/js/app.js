@@ -1,4 +1,5 @@
 import { Election } from './modules/election'
+import loadJson from '../components/load-json/'
 
 const key = "https://interactive.guim.co.uk/docsdata/1v_Ks8ZQxJv2vHt2DjYYf5UL9qAHgtuPlSrl2sOgVoz4.json";
 
@@ -18,15 +19,7 @@ let social = {
 
 };
 
-(async(url) => {
-    try {
-        let response = await fetch(url)
-        let json = await response.json()
-        let results = await json.sheets
-        new Election(results, key, social)
-
-    } catch(e) {
-        console.log("Testing one, two, three", e)
-    }
-
-})(key)
+loadJson(`${key}?t=${new Date().getTime()}`)
+  .then((json) => {
+    new Election(json.sheets, key, social)
+  })

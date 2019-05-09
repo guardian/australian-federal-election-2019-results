@@ -106,11 +106,7 @@ export class Election {
 
             self.components.cartogram = new Cartogram(cartogramOpts)
 
-            this.components.cartogram.render(this.database).then( (data) => {
-
-                console.log("Rendered map")
-
-            })
+            this.components.cartogram.render(this.database)
 
         })
 
@@ -126,9 +122,9 @@ export class Election {
 
         var self = this
 
-        this.components[componentName].render(data).then( (data) => {
+        this.components[componentName].render(data).then( (results) => {
 
-            self.database[componentName] = data
+            self.database[componentName] = results
 
         })
 

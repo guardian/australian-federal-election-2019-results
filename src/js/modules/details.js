@@ -1,5 +1,4 @@
-import reqwest from 'reqwest'
-import * as d3 from "d3"
+import loadJson from '../../components/load-json/'
 
 export class Details {
 
@@ -27,67 +26,25 @@ export class Details {
 
     async render(data) {
 
-        this.getRecent()
+        var self = this
 
-        return { updated: "now" }
+        var dataUrl = 'https://interactive.guim.co.uk/2016/aus-election/results-data/'
+
+        var allFeeds = await loadJson(`${dataUrl}recentResults.json`).then((feeds) => feeds)
+
+        var latestFeed = allFeeds[0]
+
+        loadJson(`${dataUrl}${latestFeed}.json`).then((electorates) => self.renderComplete(electorates))
+
+        return +latestFeed
 
     }
 
     renderComplete(electorates) {
 
-        var divisions = d3.map(electorates.divisions, (d) => d.name)
+        var divisions = new Map( electorates.divisions.map( (item) => [item.name, item]) )
 
         this.manageUpdateCallback(divisions);
-
-    }
-
-    getRecent() {
-
-        var req;
-
-        var recent = 'https://interactive.guim.co.uk/2016/aus-election/results-data/recentResults.json'
-
-        var opts = {
-            url: recent,
-            type: 'json',
-            crossOrigin: true,
-            // use response's date header to use for relative dates (we trust CDN date more than local)
-            success: resp => this.getDetailData(resp)
-        };
-
-        if (this.lastDataResponseDate) {
-
-            opts.headers = {
-
-                'If-Modified-Since': this.lastDataResponseDate
-
-            };
-
-        }
-
-        req = reqwest(opts);
-
-        return req;
-
-    }
-
-    getDetailData(resp, detailIndex=0) {
-
-        var dataUrl = 'https://interactive.guim.co.uk/2016/aus-election/results-data/'
-        var req;
-        var numResults = resp.length
-        this.detailIndex = detailIndex
-
-        var opts = {
-            url: `${dataUrl}${resp[detailIndex]}.json`,
-            type: 'json',
-            crossOrigin: true,
-            // use response's date header to use for relative dates (we trust CDN date more than local)
-            success: resp => this.renderComplete(resp),
-            error: err => { if(detailIndex < (numResults - 1)) { this.getDetailData(resp, detailIndex++) }}
-        };
-        req = reqwest(opts);
-        return req;
 
     }
 

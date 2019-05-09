@@ -329,15 +329,63 @@
 
                 <div class="mt-container__inner">
     
-                    <!-- Policy >
+                    <!-- Policy -->
         
                     <div class="mt-section">
-                        <h2 class="mt-section__head"><span class="mt-section__head__inner">Policy</span></h2>
-                        <div>
+
+                        <h2 class="mt-section__head"><span class="mt-section__head__inner">Contest of ideas</span></h2>
+
+                        <div class="mt-contest-of-ideas-container">
+                       
+                        	<div class="seopars"><p>Each party and candidate can be divided by their support for key policies. Here, we track which of these ideas are winning or losing</p></div>
+
+							{{#each contests}}
+
+                        	<div class="mt-contest-of-ideas">
+
+                        		<div class="mt-bar-headline-container">
+									
+									<h2 class="mt-section__subhead mt-tl__subhead">{{this.headline}}</h2>
+
+								</div>
+
+                        		{{#each this.bars}}
+
+								<div class="mt-bar-container">
+
+									<div class="mt-bar-text"><div class="mt-bar-text-container"><span>{{this.text}}</span></div></div>
+
+									<div class="mt-bar-holder">
+
+										<ul class="seatstack__bar">
+
+									    {{#each this.bar}}
+									   
+									        <li data-partyname="{{this.key}}" style="width: {{this.percentage}}%">
+
+									            <span>{{this.values}}</span>
+									            
+									        </li>
+
+									    {{/each}}
+
+									    </ul>
+
+								    </div>
+
+								</div>
+
+                        		{{/each}}
+
+                        	</div>	
+
+                        	{{/each}}
+
                         </div>
+
                     </div>
 
-                    <div class="mt-divider"></div-->
+                    <div class="mt-divider"></div>
     
                     <!-- Senate -->
         

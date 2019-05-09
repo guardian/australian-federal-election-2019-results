@@ -3,15 +3,14 @@
 
             <!-- RESULTS FEED BANNER -->     
 
-            <div class="mt-container">
+            <div class="mt-container sticky">
                 <div class="mt-tk__section">
                     <div class="mt-tk">
                         <div class="mt-tk__left">
                             <div class="mt-tk__left-live">
                                 LIVE
                             </div>
-                            <h3 class="mt-tk__left-title">Latest results</h3>
-                            <h3 class="mt-tk__count"></h3>
+                            <div class="timestampSocial">Last updated <span id="timeStamp">{{updated}}</span></div>
                         </div>
                         <div class="mt-tk__container left-edge" style="left: 0px;">
 
@@ -43,6 +42,13 @@
                                 <h3 class="mt-tk__item-headline"><span style="color: #0084c6;">Coalition</span> wins Melbourne</h3>
                             </div>
 
+                            <div class="mt-tk__item winner-D">
+                                <div class="mt-tk__item-meta">
+                                    <span class="mt-tk__item-category">Predicted</span>
+                                </div>
+                                <h3 class="mt-tk__item-headline"><span style="color: #0084c6;">Coalition</span> wins Bundy</h3>
+                            </div>
+
                         </div><a class="mt-tk__arrow left"><svg class="mt-tk__arrow-icon" viewbox="0 0 6 12">
                         <path d="M6 .5L5.5 0 0 5.8v.5L5.5 12l.5-.5L1.5 6 6 .5z"></path></svg></a><a class="mt-tk__arrow right"><svg class="mt-tk__arrow-icon" viewbox="-8 7 6 12">
                         <path d="M-8 18.5l.5.5 5.5-5.8v-.5L-7.5 7l-.5.5 4.5 5.5-4.5 5.5z"></path></svg></a>
@@ -57,38 +63,14 @@
                 <h1 class="mt-seo-headline">Live Australian Federal election results 2019</h1>
                 <div class="mt-container">
                     <div class="mt-container__inner">
-                        <span class="mt-page-title"><span class="mt-page-title__main"><span class="mt-page-title__main__inner">Australian election 2019</span></span><span class="mt-page-title__live"><span class="mt-page-title__live__inner">live results</span></span></span><img class="mt-header__image" src="<%= path %>/assets/parliament.png">
+                        <span class="mt-page-title"><span class="mt-page-title__main"><span class="mt-page-title__main__inner">Australian election 2019</span></span><span class="mt-page-title__live"><span class="mt-page-title__live__inner">live results</span></span></span>
                         <div class="mt-standfirst">
                             Stay up to date with the latest election 2019 results. Seats are called from predictions based on voting data from the Australian Electoral Commission.
                         </div>
-                        <div class="mt-standfirst-link-wrapper mt-standfirst-link-wrapper--first">
-                            <a class="mt-liveblog-link" href="https://www.theguardian.com/us-news/series/us-politics-live/latest">Follow our live coverage
-                            <div class="mt-liveblog-link__button">
-                                <svg class="mt-icon" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M38.65 25.58L37 27.21 26.79 37.44l-1.1-1.11 8.53-10.19H12.5v-2.28h21.72l-8.53-10.19 1.1-1.1L37 22.79l1.63 1.63v1.16z"></path></svg>
-                            </div></a>
-                        </div>
-                        <div class="mt-standfirst-link-wrapper">
-                            <a class="mt-liveblog-link" href="https://support.theguardian.com/?acquisitionData=%7B%22componentType%22%3A%22ACQUISITIONS_EDITORIAL_LINK%22%2C%22source%22%3A%22GUARDIAN_WEB%22%2C%22campaignCode%22%3A%22us_midterms_2018_results%22%2C%22componentId%22%3A%22us_midterms_2018%22%7D&amp;INTCMP=us_midterms_2018_results">Support our journalism
-                            <div class="mt-liveblog-link__button">
-                                <svg class="mt-icon" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M38.65 25.58L37 27.21 26.79 37.44l-1.1-1.11 8.53-10.19H12.5v-2.28h21.72l-8.53-10.19 1.1-1.1L37 22.79l1.63 1.63v1.16z"></path></svg>
-                            </div></a>
-                        </div>
-                        <ul class="mt-share">
-                            <li class="mt-share__button mt-share__button--facebook">
-                                <a href="https://www.facebook.com/dialog/share?app_id=180444840287&amp;href=https%3A%2F%2Fgu.com%2Fp%2F9tgze%3FCMP%3Dshare_btn_fb"><svg class="mt-share__icon" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M32.8 15H30c-2.2 0-2.6 1.1-2.6 2.6V21h5.3l-.7 5.3h-4.6V40h-5.5V26.3h-4.6V21h4.6v-3.9c0-4.6 2.8-7 6.8-7a31.28 31.28 0 0 1 4.1.2V15z"></path></svg></a>
-                            </li>
-                            <li class="mt-share__button mt-share__button--twitter">
-                                <a href="https://twitter.com/intent/tweet?text=Live%20midterm%20election%20results%202018&amp;url=https%3A%2F%2Fgu.com%2Fp%2F9tgze%3FCMP%3Dshare_btn_tw"><svg class="mt-share__icon" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M36 19.3v.7c0 7.5-5.7 16.2-16.2 16.2a15.36 15.36 0 0 1-8.7-2.6 6.15 6.15 0 0 0 1.4.1 11.69 11.69 0 0 0 7.1-2.4 5.58 5.58 0 0 1-5.3-4 3.75 3.75 0 0 0 1.1.1 7.72 7.72 0 0 0 1.5-.2 5.7 5.7 0 0 1-4.6-5.6v-.1a5.59 5.59 0 0 0 2.6.7 5.73 5.73 0 0 1-2.5-4.7 6 6 0 0 1 .8-2.9 16.11 16.11 0 0 0 11.7 5.9 5.7 5.7 0 0 1-.1-1.3 5.7 5.7 0 0 1 5.7-5.7 6 6 0 0 1 4.2 1.8 11.25 11.25 0 0 0 3.6-1.4 6 6 0 0 1-2.5 3.2 9.54 9.54 0 0 0 3.3-.9 15.15 15.15 0 0 1-3.1 3.1z"></path></svg></a>
-                            </li>
-                            <li class="mt-share__button mt-share__button--email">
-                                <a href="mailto:?subject=Live%20midterm%20election%20results%202018&amp;body=https%3A%2F%2Fgu.com%2Fp%2F9tgze%3FCMP%3Dshare_btn_link"><svg class="mt-share__icon" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M34.3 22.3l-.6-.6-8.5 4-8.6-4-.4.6 9 7.4c-.1 0 9.1-7.4 9.1-7.4zm1.8-7.1H13.8L11.5 19v13.9l2.4 1.8h22.4l2.2-1.8V19l-2.4-3.8zm-.8 16.2H14.6V18.5h20.7v12.9z"></path></svg></a>
-                            </li>
-                        </ul>
+						<div class="btns-share">
+						  	<button class="btn-tt" data-source="twitter" on-tap="['social', 'twitter']"></button> 
+							<button class="btn-fb" data-source="facebook" on-tap="['social', 'facebook']"></button>
+						</div>
                     </div>
                 </div>
             </div>
@@ -112,6 +94,15 @@
 						<div class="mt-key-wrapper">
 
 							{{resultCount}}/{{TOTAL_SEATS}} seats confirmed
+
+							{{#header}}
+							<div class="predicted-outcome">
+							    <div id="parliament-graphic"></div>
+							    <div class="election-result">Predicted outcome
+							            <div class="election-outcome {{#if outcome}}this.outcome.toLowerCase(){{/if}}">{{outcome}}</div>
+							     </div>
+							</div>
+							{{/header}}
 
 						</div>
 
@@ -213,6 +204,7 @@
 
             </div>
 
+            <!-- Map -->  
 
 	        <div class="electorate-section">
 

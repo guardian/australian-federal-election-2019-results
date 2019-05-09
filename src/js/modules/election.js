@@ -54,7 +54,7 @@ export class Election {
 
             this.database.header = this.database.text[0]
 
-            this.database.header.updated = this.updated()
+            this.database.updated = this.updated()
 
             this.database.info = []
 

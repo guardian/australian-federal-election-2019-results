@@ -58,6 +58,9 @@ export class Cartogram {
             .attr("height", self.height)
             .attr("id", "map")
             .attr("overflow", "hidden")
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", `0 0 ${self.width} ${self.height}`)
+            .classed("svg-content", true);
 
         this.hexFeatures = topojson.feature(hexagonsTopo, hexagonsTopo.objects.hexagons).features
         
@@ -168,7 +171,7 @@ export class Cartogram {
 
     get elDimensions() { 
         var width = this.el.getBoundingClientRect().width
-        return {width: width, height: width * 0.9}
+        return {width: width, height: width * 0.9} 
     }
 
     async render(data) {
@@ -180,6 +183,10 @@ export class Cartogram {
         d3.selectAll(`.cartogram__hex`)
             .attr('party', function(d) {
                 var electorate = electorateMap.get(d.properties.electorate)
+                if (electorate===undefined) {
+                    console.log(d.properties.electorate)
+                    electorate = 'pending'
+                }
                 return (electorate.prediction || 'pending').toLowerCase();
             })
 

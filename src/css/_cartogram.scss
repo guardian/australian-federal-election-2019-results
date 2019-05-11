@@ -10,9 +10,21 @@
 }
 
 #auscartogram {
+    display: inline-block;
+    position: relative;
     width: 100%;
-    display: block;
+    padding-bottom: 85%;
+    vertical-align: top;
+    overflow: hidden;
 }
+
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 
 .cartogram {
     font-family: $text-sans;

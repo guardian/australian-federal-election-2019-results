@@ -12,14 +12,23 @@ import { Seatstack } from '../modules/seatstack'
 import { Details } from '../modules/details'
 import { Contests } from '../modules/contest'
 import { Cartogram } from '../modules/cartogram'
+import loadJson from '../../components/load-json/'
 
 export class Election {
 
-	constructor(results, url, social) {
+	constructor(googledata, url, social) {
 
         var self = this
 
-        this.database = results
+        this.database = googledata
+
+        this.database.info = []
+
+        this.database.autocomplete = []
+
+        this.database.searchBlock = ""
+
+        this.database.feed = null
 
         this.database.commas = (num) => {
             var result = parseFloat(num).toFixed();
@@ -33,7 +42,7 @@ export class Election {
 
         this.sorter = "2PPmargin"
 
-        this.assemble().then( (data) => {
+        this.assemble(googledata).then( (data) => {
 
             self.createComponents()
 
@@ -41,27 +50,27 @@ export class Election {
 
     }
 
-    assemble() {
+    assemble(googledata) {
 
         var self = this
 
         return new Promise((resolve, reject) => {
 
-            this.database.parties = new Map( this.database['partyNames'].map( (item) => [item.partyCode.toLowerCase(), item]) )
+            this.database.senatefull = googledata.senatefull
 
-            this.database.electorates = this.database.electorates.sort((a,b) => d3.ascending(+a[self.sorter], +b[self.sorter]))
+            this.database.partyNames = googledata.partyNames
+
+            this.database.parties = new Map( googledata['partyNames'].map( (item) => [item.partyCode.toLowerCase(), item]) )
+
+            this.database.electorates = googledata.electorates.sort((a,b) => d3.ascending(+a[self.sorter], +b[self.sorter]))
 
             this.database.places = this.database.electorates.map( (item) => item.electorate)
 
-            this.database.header = this.database.text[0]
+            this.database.header = googledata.text[0]
+
+            this.database.outcome = googledata.text[0].outcome
 
             this.database.updated = this.updated()
-
-            this.database.info = []
-
-            this.database.autocomplete = []
-
-            this.database.searchBlock = ""
 
             resolve({status:"success"});  
 
@@ -113,26 +122,16 @@ export class Election {
             categories: contests
         }
 
-        var cartogramOpts = {
-            selectCallback: this.selectElectorate.bind(this),
-            tooltipCallback: this.cartogramTooltipClick.bind(this),
-            mouseBindings: self.isMobile() ? false : true
-        }
-
         this.components = {
             seatstack: new Seatstack(seatstackOpts),
             senatestack: new Seatstack(senatestackOpts),
-            details: new Details(detailsOpts),
+            feed: new Details(detailsOpts),
             contests: new Contests(contestOpts)
         };
 
         this.renderDataComponents().then( (data) => {
 
             self.ractivate()
-
-            self.components.cartogram = new Cartogram(cartogramOpts)
-
-            this.components.cartogram.render(this.database)
 
         })
 
@@ -152,10 +151,6 @@ export class Election {
 
             self.database[componentName] = results
 
-            console.log(componentName)
-
-            console.log(results)
-
         })
 
     }
@@ -172,7 +167,14 @@ export class Election {
             },
             el: '#electra',
             data: self.database,
-            template: template
+            template: template,
+            oncomplete: function () {
+
+                console.log( 'Initiate map' );
+
+                self.initMap()
+
+            }
         })
 
         this.ractive.on( 'social', ( context, channel ) => {
@@ -218,6 +220,52 @@ export class Election {
             self.autocomplete(query.trim())
             
         });
+
+        this.initFeed()
+
+
+    }
+
+    initMap() {
+
+        var self = this
+
+        var cartogramOpts = {
+            selectCallback: this.selectElectorate.bind(this),
+            tooltipCallback: this.cartogramTooltipClick.bind(this),
+            mouseBindings: self.isMobile() ? false : true
+        }
+
+        self.components.cartogram = new Cartogram(cartogramOpts)
+
+        self.components.cartogram.render(self.database)
+
+    }
+
+    initFeed() {
+
+        // this.dataInterval = window.setInterval(this.Googledoc.bind(this), 20000);
+
+    }
+
+    Googledoc() {
+
+        var self = this
+
+        loadJson(`${self.url}?t=${new Date().getTime()}`).then((data) => {
+
+            self.assemble(data.sheets).then( (data) => {
+
+                self.renderDataComponents().then( (data) => {
+
+                    self.ractive.set(self.database)
+
+                })
+
+            })
+
+
+        })
 
     }
 

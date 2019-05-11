@@ -12,7 +12,7 @@ export class Details {
 
     initOptions(opts) {
 
-        var defaultOpts = {
+        var defaultOpts = { 
 
             updateCallback: () => false
 
@@ -32,11 +32,19 @@ export class Details {
 
         var allFeeds = await loadJson(`${dataUrl}recentResults.json`).then((feeds) => feeds)
 
-        var latestFeed = allFeeds[0]
+        allFeeds = allFeeds.map((item) => +item)
 
-        loadJson(`${dataUrl}${latestFeed}.json`).then((electorates) => self.renderComplete(electorates))
+        var ordered = allFeeds.sort((a,b) => +b - +a)
 
-        return +latestFeed
+        var latestFeed = ordered[0]
+
+        if (data.feed!=latestFeed) {
+
+            loadJson(`${dataUrl}${latestFeed}.json`).then((electorates) => self.renderComplete(electorates))
+
+        }
+
+        return latestFeed
 
     }
 

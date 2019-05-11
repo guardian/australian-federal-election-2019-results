@@ -1,7 +1,7 @@
 @import 'mq';
 
 .sticky {
-	display: none;
+
 }
 
 .new-header__logo {
@@ -243,9 +243,7 @@
 	height: 100%;
 	margin: auto;
 }
-.mt-tk__section {
-	height: 54px;
-}
+
 @media (max-width: 46.24em) {
 	.mt-tk__section {
 		position: relative;
@@ -698,7 +696,7 @@
 	.mt-key-wrapper {
 		position: absolute;
 		left: -160px;
-		top: 60px;
+		top: 40px;
 	}
 }
 @media (min-width: 81.25em) {
@@ -829,3 +827,35 @@
 	margin-right: 5px;
 }
 
+
+
+
+/*! CSS Used from: Embedded */
+
+
+@media (max-width: 46.24em) {
+	.mt-tk {
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+	.mt-tk.sticky .mt-tk__container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1020;
+	}
+}
+@media (min-width: 46.25em) {
+	.mt-tk {
+		overflow: hidden;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.mt-tk.sticky {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1020;
+	}
+}

@@ -28,7 +28,7 @@
 
     @include mq($until: desktop) {
         position: fixed;
-        top: 0;
+        top: 55px;
         left: -100%;
         width: 100%;
         box-sizing: border-box;

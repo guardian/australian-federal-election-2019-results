@@ -1,3 +1,5 @@
+@import 'mq';
+
 $seatstack-bp: tablet !default;
 $seatstack-height: 40px !default;
 $seatstack-2PP-height: 160px !default;
@@ -18,6 +20,11 @@ $seatstack-top: 30px !default;
     font-family: $text-sans;
     font-size: 12px;
     padding: 20px;
+
+    @include mq($until: tablet) {
+      padding-top: 0px;
+    }
+
 }
 
 .seatstack-2PP {
@@ -175,7 +182,7 @@ $seatstack-top: 30px !default;
             h4 {
                 font-family: "Guardian Titlepiece","Guardian Headline","Guardian Egyptian Web","Guardian Headline Full",Georgia,serif;
                 font-weight: 700;
-                font-size: 30px;
+                font-size: 20px;
                 position: relative;
                 margin: 0 100px 0 auto;
                 line-height: 60px;
@@ -186,6 +193,12 @@ $seatstack-top: 30px !default;
                 position: absolute;
                 right: 10px;
                 top: -5px;
+                @include mq($from: desktop) {
+                    width: 60px;
+                    height: 60px;
+                    background-size: cover;
+                }
+
             }
 
             @include mq($until: desktop) {
@@ -201,7 +214,9 @@ $seatstack-top: 30px !default;
                 }
 
                 .sprite {
-                    height: 40px;
+                    height: 0px;
+                    padding-bottom: 100%;
+                    background-size: cover;
                 }
             }
         }

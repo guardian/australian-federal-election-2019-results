@@ -14,44 +14,18 @@
                         </div>
                         <div class="mt-tk__container left-edge" style="left: 0px;">
 
-                            <div class="mt-tk__item winner-R">
+                        	{{#ticker:i}}
+
+                            <div class="mt-tk__item">
                                 <div class="mt-tk__item-meta">
-                                    <span class="mt-tk__item-category">Predicted</span>
+                                    <span class="mt-tk__item-category">{{this.announced}}</span>
                                 </div>
-                                <h3 class="mt-tk__item-headline"><span style="color: #c70000;">Labor</span> holds Lingiari</h3>
+                                <h3 class="mt-tk__item-headline"><span data-ticker="{{this.prediction.toLowerCase()}}">{{this.label}}</span> {{this.status}} {{this.electorate}}</h3>
                             </div>
 
-                            <div class="mt-tk__item winner-D">
-                                <div class="mt-tk__item-meta">
-                                    <span class="mt-tk__item-category">Predicted</span>
-                                </div>
-                                <h3 class="mt-tk__item-headline"><span style="color: #0084c6;">Coalition</span> wins Hunter</h3>
-                            </div>
+                            {{/ticker}}
 
-                            <div class="mt-tk__item winner-R">
-                                <div class="mt-tk__item-meta">
-                                    <span class="mt-tk__item-category">Predicted</span>
-                                </div>
-                                <h3 class="mt-tk__item-headline"><span style="color: #c70000;">Labor</span> holds Blair</h3>
-                            </div>
-
-                            <div class="mt-tk__item winner-D">
-                                <div class="mt-tk__item-meta">
-                                    <span class="mt-tk__item-category">Predicted</span>
-                                </div>
-                                <h3 class="mt-tk__item-headline"><span style="color: #0084c6;">Coalition</span> wins Melbourne</h3>
-                            </div>
-
-                            <div class="mt-tk__item winner-D">
-                                <div class="mt-tk__item-meta">
-                                    <span class="mt-tk__item-category">Predicted</span>
-                                </div>
-                                <h3 class="mt-tk__item-headline"><span style="color: #0084c6;">Coalition</span> wins Bundy</h3>
-                            </div>
-
-                        </div><a class="mt-tk__arrow left"><svg class="mt-tk__arrow-icon" viewbox="0 0 6 12">
-                        <path d="M6 .5L5.5 0 0 5.8v.5L5.5 12l.5-.5L1.5 6 6 .5z"></path></svg></a><a class="mt-tk__arrow right"><svg class="mt-tk__arrow-icon" viewbox="-8 7 6 12">
-                        <path d="M-8 18.5l.5.5 5.5-5.8v-.5L-7.5 7l-.5.5 4.5 5.5-4.5 5.5z"></path></svg></a>
+                        </div>
                     </div>
                     <div class="mt-tk__placeholder"></div>
                 </div>
@@ -63,14 +37,17 @@
                 <h1 class="mt-seo-headline">Live Australian Federal election results 2019</h1>
                 <div class="mt-container">
                     <div class="mt-container__inner">
-                        <span class="mt-page-title"><span class="mt-page-title__main"><span class="mt-page-title__main__inner">Australian election 2019</span></span><span class="mt-page-title__live"><span class="mt-page-title__live__inner">live results</span></span></span>
+                    	{{#header}}
+                        <span class="mt-page-title"><span class="mt-page-title__main"><span class="mt-page-title__main__inner">{{this.headline}}</span></span><span class="mt-page-title__live"><span class="mt-page-title__live__inner">{{this.subhead}}</span></span></span>
                         <div class="mt-standfirst">
-                            Stay up to date with the latest election 2019 results. Seats are called from predictions based on voting data from the Australian Electoral Commission.
+                            {{{this.standfirst}}}
                         </div>
 						<div class="btns-share">
 						  	<button class="btn-tt" data-source="twitter" on-tap="['social', 'twitter']"></button> 
 							<button class="btn-fb" data-source="facebook" on-tap="['social', 'facebook']"></button>
 						</div>
+						<div class="mt-mobile-outcome">{{#if this.outcome}}Predicted outcome:<br/><span>{{outcome}}</span>{{/if}}</div>
+						{{/header}}
                     </div>
                 </div>
             </div>
@@ -93,16 +70,14 @@
 
 						<div class="mt-key-wrapper">
 
-							{{resultCount}}/{{TOTAL_SEATS}} seats confirmed
+							<div class="seats_confirmed">{{resultCount}}/{{TOTAL_SEATS}} seats confirmed</div>
 
-							{{#header}}
 							<div class="predicted-outcome">
 							    <div id="parliament-graphic"></div>
 							    <div class="election-result">Predicted outcome
 							            <div class="election-outcome {{#if outcome}}this.outcome.toLowerCase(){{/if}}">{{outcome}}</div>
 							     </div>
 							</div>
-							{{/header}}
 
 						</div>
 
@@ -122,7 +97,9 @@
 
 							                <div class="seatstack-party-name">
 
-							                    <h4>{{this.name}}</h4>
+							                    <h4 data-ticker="{{this.party.toLowerCase()}}" >{{this.name}}</h4>
+
+												<div class="sprite" style="background-image: url('<%= path %>/assets/imgs/{{this.party.toLowerCase()}}.png');"></div>
 
 							                </div>
 
@@ -232,7 +209,7 @@
 									<span class="veri__details-counted">{{ percentageCounted }}% Counted</span>
 								</h2>
 
-								<div class="veri__close-details">
+								<div class="veri__close-details" on-tap="['close']">
 									<svg viewBox="0 0 33.2 33.2">
 										<g>
 											<polygon points="2.1,0 0,2.1 14.8,18.4 31.4,32.9 33.2,31.1 18.4,14.8 "/>

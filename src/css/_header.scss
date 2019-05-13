@@ -3,7 +3,11 @@
 .mt {
 
   .predicted-outcome {
-    margin-top: 20px;
+    
+    @include mq($from: tablet) {
+      margin-top: 20px;
+    }
+
   }
 
   #parliament-graphic {
@@ -14,6 +18,12 @@
       background-position: center top;
       background-repeat: no-repeat;
       margin-left: 0; 
+
+      @include mq($until: tablet) {
+          display: none;
+      }
+
+
   }    
 
   .election-result {
@@ -33,6 +43,13 @@
         color: #b51800;
       }
     }
+
+    @include mq($until: tablet) {
+        display: none;
+    }
+
+
+
   }
 
   .timestampSocial {
@@ -43,6 +60,8 @@
 
   .btns-share {
     display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .btns-share .btn-tt {

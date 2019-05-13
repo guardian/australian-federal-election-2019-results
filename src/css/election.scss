@@ -475,6 +475,7 @@
 		border-bottom: 1px solid #dcdcdc;
 	}
 }
+
 .mt-tk__item {
 	position: relative;
 	-moz-box-sizing: border-box;
@@ -488,18 +489,23 @@
 	background-color: white;
 	text-decoration: none!important;
 	height: 54px;
-	transition: border-top-color 0.3s, background 0.3s, height 0.1s;
-	-webkit-animation: none;
-	animation: none;
+    -webkit-animation: fadeinout 2s linear 1 forwards;
+    animation: fadeinout 2s linear 1 forwards;
 }
-.mt-tk__item.winner-D {
-	border-top: 2px solid rgba(5, 109, 161, 0);
-	border-top: none;
+
+@-webkit-keyframes fadeinout {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
-.mt-tk__item.winner-R {
-	border-top: 2px solid rgba(204, 10, 17, 0);
-	border-top: none;
+
+@keyframes fadeinout {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
+
+
+
+
 .mt-tk__item-meta {
 	font-size: 14px;
 	line-height: 20px;
@@ -783,11 +789,20 @@
 .mt-contest-of-ideas {
 	box-sizing: border-box;
 	padding: 10px;
-	width: 50%;
+	
 	float: left;
 	border-right: 1px dotted lightgrey;
 	border-top: 1px dotted lightgrey;
 	display: inline-block;
+
+    @include mq($until: tablet) {
+      width: 100%;
+    }
+
+    @include mq($from: tablet) {
+      width: 50%;
+    }
+
 }
 
 .mt-bar-headline-container {
@@ -900,4 +915,21 @@
 	font-size: 11px;
 	line-height: 40px;
     /* border-left: 0; */
+}
+
+.seats_confirmed, .mt-mobile-outcome {
+	font-size: 14px;
+	line-height: 15px;
+	font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: darkgrey;
+}
+
+.mt-mobile-outcome {
+	@include mq($from: tablet) {
+      display: none;
+    }
+}
+
+.mt-mobile-outcome span {
+	font-weight: 600;
 }

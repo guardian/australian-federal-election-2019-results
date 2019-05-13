@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 //import { Toolbelt } from '../modules/toolbelt'
 import { $, $$, round, numberWithCommas, wait, getDimensions } from '../modules/util'
 import Ractive from 'ractive'
-import ractiveFade from 'ractive-transitions-fade'
+//import fade from 'ractive-transitions-fade'
 import ractiveTap from 'ractive-events-tap'
 import ractiveEventsHover from 'ractive-events-hover'
 import moment from 'moment'
@@ -11,6 +11,7 @@ import share from '../modules/share'
 import { Seatstack } from '../modules/seatstack'
 import { Details } from '../modules/details'
 import { Contests } from '../modules/contest'
+import { Ticker } from '../modules/ticker'
 import { Cartogram } from '../modules/cartogram'
 import loadJson from '../../components/load-json/'
 
@@ -19,6 +20,8 @@ export class Election {
 	constructor(googledata, url, social) {
 
         var self = this
+
+        this.tickerInterval = null
 
         this.database = googledata
 
@@ -126,7 +129,8 @@ export class Election {
             seatstack: new Seatstack(seatstackOpts),
             senatestack: new Seatstack(senatestackOpts),
             feed: new Details(detailsOpts),
-            contests: new Contests(contestOpts)
+            contests: new Contests(contestOpts),
+            ticker: new Ticker()
         };
 
         this.renderDataComponents().then( (data) => {
@@ -170,8 +174,6 @@ export class Election {
             template: template,
             oncomplete: function () {
 
-                console.log( 'Initiate map' );
-
                 self.initMap()
 
             }
@@ -184,6 +186,13 @@ export class Election {
             shared(channel);
 
         });
+
+        this.ractive.on( 'close', ( context ) => {
+
+            console.log("Close")
+
+        });
+
 
         this.ractive.on( 'electorate', ( context, electorate ) => {
 
@@ -240,6 +249,39 @@ export class Election {
 
         self.components.cartogram.render(self.database)
 
+        self.newsFeed()
+    }
+
+    newsFeed() {
+
+        var self = this
+
+        if (self.database.ticker.length > 2) {
+
+            this.tickerInterval = window.setInterval(self.updateFeed.bind(this), 5000);
+
+        }
+
+    }
+
+    updateFeed() {
+ 
+        var self = this
+
+        if (self.database.ticker.length > 2) {
+
+            console.log("Update news ticker")
+
+            var item = self.database.ticker[0]
+
+            self.database.ticker.shift();
+
+            self.database.ticker.push(item)
+
+            self.ractive.set('ticker', self.database.ticker)
+
+        }
+
     }
 
     initFeed() {
@@ -252,6 +294,14 @@ export class Election {
 
         var self = this
 
+        if (self.tickerInterval!=null) {
+
+            clearInterval(self.tickerInterval);
+
+            self.tickerInterval = null
+
+        }
+
         loadJson(`${self.url}?t=${new Date().getTime()}`).then((data) => {
 
             self.assemble(data.sheets).then( (data) => {
@@ -260,10 +310,11 @@ export class Election {
 
                     self.ractive.set(self.database)
 
+                    self.newsFeed()
+
                 })
 
             })
-
 
         })
 

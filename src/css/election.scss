@@ -825,6 +825,7 @@
 	width: calc(100% - 185px);
 	float: right;
 	margin-right: 5px;
+	position: relative;
 }
 
 
@@ -858,4 +859,45 @@
 		right: 0;
 		z-index: 1020;
 	}
+}
+
+
+
+.contest_unknown {
+	top: 65px;
+	text-align: right;
+	width: 100%;
+	font-size: 13px;
+	line-height: 15px;
+	font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: darkgrey;
+}
+
+.contest__majority {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    height: 40px;
+    line-height: 40px;
+    top: 70px;
+    font-size: 16px;
+    color: #767676;
+    font-style: italic;
+    &:after {
+        content: '';
+        border-left: 1px dotted #767676;
+        position: absolute;
+        height: 40px;
+        left: 90%;
+        top: -40px;
+        z-index: 1;
+    }
+
+}
+
+.contest__total {
+	margin-left: 10px;
+	font-size: 11px;
+	line-height: 40px;
+    /* border-left: 0; */
 }

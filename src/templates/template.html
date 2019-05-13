@@ -357,17 +357,23 @@
 
 									<div class="mt-bar-holder">
 
+										<div class="contest__majority"></div>
+
 										<ul class="seatstack__bar">
 
 									    {{#each this.bar}}
 									   
-									        <li data-partyname="{{this.key}}" style="width: {{this.percentage}}%">
-
-									            <span>{{this.values}}</span>
-									            
-									        </li>
+									        <li data-partyname="{{this.party}}" style="width: {{this.percentage}}%"></li>
 
 									    {{/each}}
+
+
+						            		<li class="contest__total">
+
+						                		<span>{{this.total}}</span>
+
+						            		</li>
+
 
 									    </ul>
 
@@ -376,6 +382,8 @@
 								</div>
 
                         		{{/each}}
+
+                        		<div class="contest_unknown">Unknown: {{this.unknown}}</div>
 
                         	</div>	
 

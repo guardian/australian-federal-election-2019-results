@@ -1,4 +1,4 @@
-import hexagonsTopo from './../data/hexmerged.json'
+import hexagonsTopo from './../data/hexmap.json'
 import * as d3 from "d3"
 import * as topojson from "topojson"
 
@@ -62,7 +62,7 @@ export class Cartogram {
             .attr("viewBox", `0 0 ${self.width} ${self.height}`)
             .classed("svg-content", true);
 
-        this.hexFeatures = topojson.feature(hexagonsTopo, hexagonsTopo.objects.hexagons).features
+        this.hexFeatures = topojson.feature(hexagonsTopo, hexagonsTopo.objects.hexmap).features
         
         this.hexGroup = this.svg.append("g").attr('class', 'cartogram__hexgroup')
 

@@ -4,7 +4,7 @@
 
   .predicted-outcome {
     
-    @include mq($from: tablet) {
+    @include mq($from: wide) {
       margin-top: 20px;
     }
 
@@ -19,7 +19,7 @@
       background-repeat: no-repeat;
       margin-left: 0; 
 
-      @include mq($until: tablet) {
+      @include mq($until: wide) {
           display: none;
       }
 
@@ -44,7 +44,7 @@
       }
     }
 
-    @include mq($until: tablet) {
+    @include mq($until: wide) {
         display: none;
     }
 

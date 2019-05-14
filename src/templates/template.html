@@ -135,7 +135,7 @@
 								            
 										    {{#each partyListLeft}}
 
-								            <li class="seatstack-list__item">
+								            <li class="seatstack-list__item" on-hover="['partymap', key]">
 								                <span class="seatstack-list__partybox" data-partyname="{{this.key}}"></span>
 								                <span class="seatstack-list__party-name">{{this.name}}</span>
 								                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
@@ -156,7 +156,7 @@
 
 								    	{{#each partyListRight}}
 
-							            <li class="seatstack-list__item">
+							            <li class="seatstack-list__item" on-hover="['partymap', key]">
 							                <span class="seatstack-list__partybox" data-partyname="{{this.key}}"></span>
 							                <span class="seatstack-list__party-name">{{this.name}}</span>
 							                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
@@ -202,7 +202,7 @@
 
 						{{#info}}
 
-						    <div id="electorate-details" class="veri__details veri__details--show">
+						    <div id="electorate-details" class="veri__details">
 
 								<h2 class="veri__details-header" >
 									<span class="veri__details-electorate-name">{{electorate}}</span>  

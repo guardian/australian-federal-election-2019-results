@@ -209,13 +209,14 @@ $seatstack-top: 30px !default;
                     line-height: 12px;
                     text-align: center;
                     font-size: 12px;
-                    width: 100%;
+                    width: 60px;
                     right: 10px;
                 }
 
                 .sprite {
-                    height: 0px;
-                    padding-bottom: 100%;
+                    width: 60px;
+                    height: 60px;
+                    float: left;
                     background-size: cover;
                 }
             }

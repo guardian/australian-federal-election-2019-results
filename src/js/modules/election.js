@@ -1,5 +1,5 @@
 import template from '../../templates/template.html'
-import * as d3 from 'd3'
+//import * as d3 from 'd3'
 //import { Toolbelt } from '../modules/toolbelt'
 import { $, $$, round, numberWithCommas, wait, getDimensions } from '../modules/util'
 import Ractive from 'ractive'
@@ -65,7 +65,9 @@ export class Election {
 
             this.database.parties = new Map( googledata['partyNames'].map( (item) => [item.partyCode.toLowerCase(), item]) )
 
-            this.database.electorates = googledata.electorates.sort((a,b) => d3.ascending(+a[self.sorter], +b[self.sorter]))
+            //this.database.electorates = googledata.electorates.sort((a,b) => d3.ascending(+a[self.sorter], +b[self.sorter]))
+
+            this.database.electorates = googledata.electorates.sort((a,b) => +b[self.sorter] - +a[self.sorter])
 
             this.database.places = this.database.electorates.map( (item) => item.electorate)
 
@@ -189,10 +191,23 @@ export class Election {
 
         this.ractive.on( 'close', ( context ) => {
 
-            console.log("Close")
+            var el = document.getElementById('electorate-details');
+
+            if (el.hasClass('veri__details--show')) {
+
+                el.removeClass('veri__details--show');
+
+            }
 
         });
 
+        this.ractive.on( 'partymap', ( context, party ) => {
+
+            var status = (context.hover) ? party : false ;
+
+            self.components.cartogram.highlightParty(status);  
+
+        });
 
         this.ractive.on( 'electorate', ( context, electorate ) => {
 
@@ -381,11 +396,12 @@ export class Election {
         this.selectedElectorate = electorate;
         var result = this.database.results.get(electorate)
         var aecResult = this.database.divisions.get(electorate)
-        var candidates = aecResult.candidates.sort((a,b) => d3.descending(a.votesTotal,b.votesTotal))
+        var candidates = aecResult.candidates.sort((a,b) => a.votesTotal - b.votesTotal)
+        
 
         var hideTwoParty = false
         if (Array.isArray(aecResult.twoCandidatePreferred)) {
-            var twoParty = aecResult.twoCandidatePreferred.sort((a,b) => d3.descending(a.votesTotal,b.votesTotal))
+            var twoParty = aecResult.twoCandidatePreferred.sort((a,b) => a.votesTotal - b.votesTotal)
             var nameField = 'party_long'
         } else {
             var hideTwoParty = true
@@ -418,16 +434,17 @@ export class Election {
             self.database.searchBlock = ""
 
             self.ractive.set("info", self.database.info)    
-            self.ractive.set("searchBlock", self.database.searchBlock)      
+            self.ractive.set("searchBlock", self.database.searchBlock)    
+
+            self.components.cartogram.selectElectorate(electorate);  
 
         }
 
     }
 
     cartogramTooltipClick(electorate) {
-        //console.log(electorate)
-        //this.components.details.selectElectorate(electorate);
-        //this.freezeScrolling();
+        this.components.details.selectElectorate(electorate);
+        this.freezeScrolling();
     }
 
     updated() {

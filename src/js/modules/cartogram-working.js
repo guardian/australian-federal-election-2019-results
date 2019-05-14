@@ -1,15 +1,12 @@
 import hexagonsTopo from './../data/hexmap.json'
-//import * as d3 from "d3"
-import d3 from './d3Importer';
+import * as d3 from "d3"
 import * as topojson from "topojson"
 
-/*
 d3.selection.prototype.moveToFront = function() {
     return this.each(function(){
         this.parentNode.appendChild(this);
     });
 };
-*/
 
 export class Cartogram {
 
@@ -24,8 +21,6 @@ export class Cartogram {
         this.width = this.el.getBoundingClientRect().width
 
         this.height = this.width * 0.85
-
-        this.currentSelection = null
 
         this.createMap()
 
@@ -75,12 +70,16 @@ export class Cartogram {
 
         this.hexPaths
             .enter().append("path")
-            .attr("fill", 'lightgrey')
-            .classed('cartogram__hex', true)
-            .attr("d", self.path)
-            .on("click", function(d) { 
-                self.selectElectorateCallback(d.properties.electorate)
+            .attr("fill", function(d) {
+                return 'lightgrey' ;
             })
+            .classed('cartogram__hex', true)
+            .style("stroke","#fff")
+            .attr("d", self.path)
+            .on("mouseover", tooltipIn)
+            .on("mouseout", tooltipOut)
+            .on("click", hexclick)
+            .on("mousemove", mousemove)
 
         this.hexCentroids = {}
 
@@ -92,57 +91,36 @@ export class Cartogram {
 
         });
 
-        if (self.opts.mouseBindings) {
+        function mousemove(d) {
 
-            this.svg.on('mouseleave', function() { this.hideTooltip(); }.bind(this))
+            if (self.opts.mouseBindings) {
 
-            this.hexes.on('mouseover', function(d) {
 
-                let electorate = d.properties.electorate
-
-                this.tooltiper(electorate);
-
-                /*
-                d3.selectAll(".cartogram__hex").classed("cartogram__hex--focus", function(d) {
-                    return (d.properties.electorate===electorate) ? true : false
-                });
-                */
-
-            }.bind(this))
+            }
 
         }
 
-    }
+        function hexclick(d) {
 
-    tooltiper(selected) {
+            console.log(d.properties.ELECT_DIV)
 
-        if (selected && selected!=this.currentSelection) {
+            console.log(d.properties.electorate)
 
-            this.currentSelection = selected
-
-            this.renderTooltip(selected)
+            self.selectElectorateCallback(d.properties.electorate);
 
         }
 
-    }
+        function tooltipIn(d) {
 
-    highlightParty(party) {
-        if (party) this.el.setAttribute('party-highlight', party.toLowerCase());
-        else this.el.removeAttribute('party-highlight');
-    }
+            self.renderTooltip(d.properties.ELECT_DIV)
 
-    hideTooltip() {
-        if (this.tooltip) this.tooltip.style.visibility = '';
-    }
+        }
 
-    selectElectorate(electorate) {
+        function tooltipOut() {
 
-        var self = this
+            if (self.tooltip) self.tooltip.style.visibility = 'hidden';
 
-        self.hexes
-            .classed('cartogram__hex--selected', function(d) {
-                return (d.properties.electorate===electorate) ? true : false
-            })
+        }
 
     }
 
@@ -190,7 +168,7 @@ export class Cartogram {
             var spoutOffset = Math.min(rect.width - 12, coords[0] - actualLeft);
             this.tooltip.querySelector('.cartogram__tooltip__spout').style.left = spoutOffset + 'px';
             this.tooltip.className = 'cartogram__tooltip' + (topSide ? ' cartogram__tooltip--above' : ' cartogram__tooltip--below');
-
+        
         }
 
     }
@@ -206,10 +184,11 @@ export class Cartogram {
 
         var electorateMap = new Map( data.electorates.map( (item) => [item.electorate, item]) )
 
-        self.hexes
+        d3.selectAll(`.cartogram__hex`)
             .attr('party', function(d) {
                 var electorate = electorateMap.get(d.properties.electorate)
                 if (electorate===undefined) {
+                    console.log(d.properties.electorate)
                     electorate = 'pending'
                 }
                 return (electorate.prediction || 'pending').toLowerCase();

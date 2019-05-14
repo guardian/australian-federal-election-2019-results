@@ -1,4 +1,5 @@
-import * as d3 from 'd3'
+//import * as d3 from 'd3'
+import d3 from './d3Importer';
 const COALITION = ['lib', 'lnp', 'nat', 'clp']
 const SENATE = ['lib', 'nat', 'pending', 'other', 'nxt', 'grn', 'alp']
 

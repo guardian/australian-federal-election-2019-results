@@ -28,7 +28,7 @@ export class Details {
 
         var self = this
 
-        var dataUrl = 'https://interactive.guim.co.uk/2016/aus-election/results-data/'
+        var dataUrl = 'https://interactive.guim.co.uk/2019/05/aus-election/results-data/'
 
         var allFeeds = await loadJson(`${dataUrl}recentResults.json`).then((feeds) => feeds)
 

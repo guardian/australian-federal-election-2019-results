@@ -44,6 +44,8 @@ export class Details {
 
         }
 
+        console.log(latestFeed)
+
         return latestFeed
 
     }

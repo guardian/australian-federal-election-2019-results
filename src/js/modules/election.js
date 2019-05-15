@@ -285,8 +285,6 @@ export class Election {
 
         if (self.database.ticker.length > 2) {
 
-            console.log("Update news ticker")
-
             var item = self.database.ticker[0]
 
             self.database.ticker.shift();
@@ -301,7 +299,7 @@ export class Election {
 
     initFeed() {
 
-        // this.dataInterval = window.setInterval(this.Googledoc.bind(this), 20000);
+        this.dataInterval = window.setInterval(this.Googledoc.bind(this), 20000);
 
     }
 

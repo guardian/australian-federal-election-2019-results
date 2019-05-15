@@ -227,8 +227,6 @@ export class Seatstack {
 
     };
 
-    console.log(renderData)
-
     return renderData
 
   }

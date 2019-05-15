@@ -2,6 +2,15 @@
 @import 'fonts';
 @import 'mq';
 
+
+
+
+.element-atom,
+.interactive-atom {
+    margin: 0 !important;
+}
+
+
 @import 'election';
 @import 'buttons';
 @import 'general';

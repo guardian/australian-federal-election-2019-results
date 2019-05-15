@@ -3,6 +3,10 @@
 [data-partyname='grn'] { background-color: #298422; color: #298422; }
 [data-partyname='ag'] { background-color: #298422; color: #298422; }
 [data-partyname='ind'] { background-color: #B3B3B4; color: #B3B3B4; }
+[data-partyname='ca'] { background-color: #B3B3B4; color: #B3B3B4; }
+[data-partyname='on'] { background-color: #B3B3B4; color: #B3B3B4; }
+[data-partyname='ac'] { background-color: #B3B3B4; color: #B3B3B4; }
+[data-partyname='ind'] { background-color: #B3B3B4; color: #B3B3B4; }
 [data-partyname='Pending'] { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAKklEQVQIW2N8+PDhGQYoOHnyJAMjTADEMTc3hwjAOCCFjKtWrToDkoEBAG1vFhyE06BwAAAAAElFTkSuQmCC) repeat; color: #B3B3B4; }
 [data-partyname='pup'] { background-color: #7D0069; color: #7D0069; }
 [data-partyname='kap'] { background-color: #ff9b0b; color: #ff9b0b; }
@@ -37,6 +41,19 @@ background-image: linear-gradient(-45deg, #298422 25%, transparent 25%, transpar
 [data-partyhatch='ind'] {
 color: #B3B3B4; 
 background-image: linear-gradient(-45deg, #B3B3B4 25%, transparent 25%, transparent 50%, #B3B3B4 50%, #B3B3B4 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='ca'] {
+color: #B3B3B4; 
+background-image: linear-gradient(-45deg, #B3B3B4 25%, transparent 25%, transparent 50%, #B3B3B4 50%, #B3B3B4 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='on'] {
+color: #B3B3B4; 
+background-image: linear-gradient(-45deg, #B3B3B4 25%, transparent 25%, transparent 50%, #B3B3B4 50%, #B3B3B4 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='ac'] {
+color: #B3B3B4; 
+background-image: linear-gradient(-45deg, #B3B3B4 25%, transparent 25%, transparent 50%, #B3B3B4 50%, #B3B3B4 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
 
 [data-partyhatch='pup'] {
 color: #7D0069; 

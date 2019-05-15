@@ -205,23 +205,7 @@ export class Seatstack {
 
     }
 
-    //senateMap.get('other').values = d3.sum(partyData.filter((d) => !senateMap.has(d.key) && d.key !== 'lnp' && d.key !== 'clp'), (d) => d.value)
-    
-    //senateMap.get('other').seats = ( senateMap.get('other').values > 0 ) ? true : false ;
-
-    //senateMap.get('other').percentage = ( senateMap.get('other').values / this.totalSeats ) * 100 ;
-
     senateMap.get('pending').value = this.totalSeats - hasData.length
-
-    //var lnpValue = partyMap.get('lnp') ? partyMap.get('lnp').value : 0
-    
-    //var clpValue = partyMap.get('clp') ? partyMap.get('clp').value : 0
-    
-    //senateMap.get('lib').values += lnpValue + clpValue
-
-    //senateMap.get('lib').seats = ( senateMap.get('lib').values > 0 ) ? true : false ;
-
-    //senateMap.get('lib').percentage = ( senateMap.get('lib').values / this.totalSeats ) * 100 ;
     
     partyData.sort((a,b) => b.value - a.value)
 

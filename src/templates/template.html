@@ -415,45 +415,61 @@
 
 								    {{#if partyListLeft}}
 
-								        <ul class="seatstack-list seatstack-list--1">
+								    	<div class="senate-table">
 
-								            <li class="seatstack-list__item is-header">
-								                <span class="seatstack-list__seats is-header">seats</span>
-								            </li>
-								            
-										    {{#each partyListLeft}}
+										<table>
+											<thead>
+												<tr>
+													<th></th>
+													<th></th>
+													<th>current</th>
+													<th></th>
+													<th>new</th>
+												</tr>
+											</thead>
+											<tbody>
+												{{#each partyListLeft}}
+													<tr class="senate-table__row">
+														<td><span class="senate-table__party">{{this.name}}</span></td>
+														<td><div class="senate-table__partybox" data-partyhatch="{{this.key}}"></div></td>
+														<td><span class="senate-table__current">{{this.current}}</span></td>
+														<td><div class="senate-table__partybox" data-partyname="{{this.key}}"></div></td>
+														<td><span class="senate-table__current">{{this.elected}}</span></td>
+													</tr>
+												{{/each}}
+											</tbody>
+										</table>
 
-								            <li class="seatstack-list__item">
-								                <span class="seatstack-list__partybox" data-partyname="{{this.key}}"></span>
-								                <span class="seatstack-list__party-name">{{this.name}}</span>
-								                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
-								                <span class="seatstack-list__seats">{{this.value}}</span>
-								            </li>
-
-										    {{/each}}
-
-										</ul>
+										</div>
 
 								    {{/if}}
 
-									<ul class="seatstack-list seatstack-list--2">
+								    	<div class="senate-table">
 
-					            		<li class="seatstack-list__item is-header">
-					                		<span class="seatstack-list__seats is-header">seats</span>
-					            		</li>
+										<table>
+											<thead>
+												<tr>
+													<th></th>
+													<th></th>
+													<th>current</th>
+													<th></th>
+													<th>new</th>
+												</tr>
+											</thead>
+											<tbody>
+												{{#each partyListRight}}
+													<tr class="senate-table__row">
+														<td><span class="senate-table__party">{{this.name}}</span></td>
+														<td><div class="senate-table__partybox" data-partyhatch="{{this.key}}"></div></td>
+														<td><span class="senate-table__current">{{this.current}}</span></td>
+														<td><div class="senate-table__partybox" data-partyname="{{this.key}}"></div></td>
+														<td><span class="senate-table__current">{{this.elected}}</span></td>
+													</tr>
+												{{/each}}
+											</tbody>
+										</table>
 
-								    	{{#each partyListRight}}
-
-							            <li class="seatstack-list__item">
-							                <span class="seatstack-list__partybox" data-partyname="{{this.key}}"></span>
-							                <span class="seatstack-list__party-name">{{this.name}}</span>
-							                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
-							                <span class="seatstack-list__seats">{{this.value}}</span>
-							            </li>
-
-								    	{{/each}}
-
-								    </ul>
+									</div>
 
 							    {{/if}}
 

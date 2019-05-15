@@ -419,6 +419,27 @@ $seatstack-list-lineheight: 24px;
     }
 }
 
+#senatestack {
+
+    .seatstack-list__partybox {
+        float: right;
+    }
+
+    .seatstack-list__seats {
+        float: right;
+        font-size: 11px;
+    }
+
+    .seatstack-list__current {
+        float: right;
+        font-size: 11px;
+    }
+
+}
+
+
+
+
 #senatestack .seatstack__bar li {
     height: 40px;
 }

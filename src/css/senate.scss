@@ -1,0 +1,128 @@
+@import 'mq';
+
+.senate-table {
+
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-size: 14px;
+    color: #333;
+	padding: 5px 10px;
+	float: left;
+	box-sizing: border-box;
+
+	
+    @include mq($until: mobile) {
+		width: 100%;
+    }
+
+	@include mq($from: mobile, $until: tablet) {
+		width: 100%;
+	}
+
+	@include mq($from: tablet, $until: desktop) {
+		width: 100%;
+	}
+
+	@include mq($from: desktop, $until: leftCol) {
+		width: 50%;
+		float: left;
+	}
+
+	@include mq($from: leftCol, $until: wide) {
+		width: 50%;
+		float: left;
+	}
+
+	@include mq($from: wide) {
+		width: 50%;
+		float: left;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	td, th {
+		padding: 0;
+	}
+
+	.senate-table__partybox {
+		width: 20px;
+		height: 20px;
+	}
+
+	table {
+		clear: both;
+		font-size: 14px;
+		width: 100%;
+		border-collapse: collapse;
+		font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	}
+
+	table tbody tr:hover {
+		background-color: #f7f7f7;
+	}
+
+	table td,  table th {
+		text-align: right;
+		line-height: 32px;
+	}
+
+	table th {
+		font-weight: normal;
+		color: #767676;
+		text-transform: lowercase;
+	}
+
+	table td {
+		border-top: 1px dotted #dfdfdf;
+	}
+
+	table .party-name {
+		background-color: transparent;
+	}
+
+	table td:nth-child(1),  table th:nth-child(1) {
+		text-align: left;
+	}
+
+	table td:nth-child(2),  table th:nth-child(2) {
+		width: 25px;
+	}
+
+	table td:nth-child(3),  table th:nth-child(3) {
+		text-align: center;
+		width: 50px;
+	}
+
+	table td:nth-child(4),  table th:nth-child(4) {
+		width: 25px;
+
+	}
+
+	table td:nth-child(5),  table th:nth-child(5) {
+		text-align: center;
+		width: 50px;
+	}
+
+
+
+
+}
+
+.senate-table:nth-of-type(3)  {
+
+	@include mq($from: tablet, $until: desktop) {
+		margin-top: -10px;
+	}
+
+	table th {
+
+		@include mq($from: tablet, $until: desktop) {
+			display: none;
+			margin-top: -10px;
+		}
+
+	}
+
+}

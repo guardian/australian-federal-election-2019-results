@@ -26,7 +26,7 @@ $arrowColorOverrides: (
 
 $egyptian: "Guardian Egyptian Web, Guardian Text Egyptian Web, Georgia, serif";
 $text-sans: "Guardian Text Sans Web, TextSans, Arial, sans-serif";
-$agate: "Guardian Text Sans Web, Agate Sans, sans-serif";
+$agate: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 
 @function partyColor($party) {
 	@return map-get($partyColors, $party);

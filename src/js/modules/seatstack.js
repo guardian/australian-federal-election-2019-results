@@ -1,7 +1,7 @@
 //import * as d3 from 'd3'
 import d3 from './d3Importer';
 const COALITION = ['lib', 'lnp', 'nat', 'clp']
-const SENATE = ['lib', 'nat', 'pending', 'other', 'nxt', 'grn', 'alp']
+const SENATE = ['lib', 'nat', 'pending', 'other', 'alp', 'grn', 'nxt']
 
 export class Seatstack {
 
@@ -36,9 +36,9 @@ export class Seatstack {
 
     partyData.forEach((d) => {
 
-      d.name = data.parties.get(d.key).partyName
+      	d.name = data.parties.get(d.key).partyName
 
-      d.shortName = data.parties.get(d.key).shortName
+      	d.shortName = data.parties.get(d.key).shortName
 
     })
 
@@ -101,9 +101,15 @@ export class Seatstack {
 
     partyData.forEach((d) => {
 
-      d.name = data.parties.get(d.key).partyName
+    	let current = hasData.filter( (item) => item.party.toLowerCase() === d.key && item.current === 'yes')
 
-      d.shortName = data.parties.get(d.key).shortName
+      	d.name = data.parties.get(d.key).partyName
+
+      	d.shortName = data.parties.get(d.key).shortName
+
+      	d.current = current.length
+
+      	d.elected = d.value - current.length
 
     })
 
@@ -121,6 +127,10 @@ export class Seatstack {
 
       var seats = party ? party.value : 0 ;
 
+      var current = party ? party.current : 0 ;
+
+      var elected = party ? party.elected : 0 ;
+
       if (party) {
 
         obj.name = party.name
@@ -135,11 +145,23 @@ export class Seatstack {
 
       }
 
-      obj.values = seats
+      obj.value = seats
+
+      obj.current = current
+
+      obj.elected = elected
 
       obj.seats = ( seats > 0 ) ? true : false ;
 
+      obj.currentSeats = ( current > 0 ) ? true : false ;
+
+      obj.electedSeats = ( elected > 0 ) ? true : false ;
+
       obj.percentage = ( seats / this.totalSeats ) * 100 ;
+
+      obj.currentPercentage = ( current / seats ) * 100 ;
+
+      obj.electedPercentage = ( elected / seats ) * 100 ;
 
       obj.notpending = (d === 'pending') ? false : true ;
 
@@ -149,23 +171,57 @@ export class Seatstack {
 
     var senateMap = new Map( senateData.map( (item) => [item.key, item]) )
 
-    senateMap.get('other').values = d3.sum(partyData.filter((d) => !senateMap.has(d.key) && d.key !== 'lnp' && d.key !== 'clp'), (d) => d.value)
+    var breakdown = [{
+    	value : "value",
+    	seats : "seats",
+    	percentage : "percentage",
+    },{
+    	value : "current",
+    	seats : "currentSeats",
+    	percentage : "currentPercentage",
+    },{
+    	value : "elected",
+    	seats : "electedSeats",
+    	percentage : "electedPercentage",
+    }]
+
+    for (var i = 0; i < breakdown.length; i++) {
+
+    	senateMap.get('other')[breakdown[i].value] = d3.sum(partyData.filter((d) => !senateMap.has(d.key) && d.key !== 'lnp' && d.key !== 'clp'), (d) => d[breakdown[i].value])
     
-    senateMap.get('other').seats = ( senateMap.get('other').values > 0 ) ? true : false ;
+    	senateMap.get('other')[breakdown[i].seats] = ( senateMap.get('other')[breakdown[i].value] > 0 ) ? true : false ;
 
-    senateMap.get('other').percentage = ( senateMap.get('other').values / this.totalSeats ) * 100 ;
+    	senateMap.get('other')[breakdown[i].percentage] = (breakdown[i].value==="value") ? ( senateMap.get('other')[breakdown[i].value] / this.totalSeats ) * 100 : ( senateMap.get('other')[breakdown[i].value] / senateMap.get('other').value ) * 100 ;
 
-    senateMap.get('pending').values = this.totalSeats - hasData.length
+		var lnpValue = partyMap.get('lnp') ? partyMap.get('lnp')[breakdown[i].value] : 0
 
-    var lnpValue = partyMap.get('lnp') ? partyMap.get('lnp').value : 0
+		var clpValue = partyMap.get('clp') ? partyMap.get('clp')[breakdown[i].value] : 0
+
+		senateMap.get('lib')[breakdown[i].value] += lnpValue + clpValue
+
+		senateMap.get('lib')[breakdown[i].seats] = ( senateMap.get('lib')[breakdown[i].value] > 0 ) ? true : false ;
+
+		senateMap.get('lib')[breakdown[i].percentage] = (breakdown[i].value==="value") ? ( senateMap.get('lib')[breakdown[i].value] / this.totalSeats ) * 100 : ( senateMap.get('lib')[breakdown[i].value] / senateMap.get('lib').value ) * 100 ;
+
+    }
+
+    //senateMap.get('other').values = d3.sum(partyData.filter((d) => !senateMap.has(d.key) && d.key !== 'lnp' && d.key !== 'clp'), (d) => d.value)
     
-    var clpValue = partyMap.get('clp') ? partyMap.get('clp').value : 0
+    //senateMap.get('other').seats = ( senateMap.get('other').values > 0 ) ? true : false ;
+
+    //senateMap.get('other').percentage = ( senateMap.get('other').values / this.totalSeats ) * 100 ;
+
+    senateMap.get('pending').value = this.totalSeats - hasData.length
+
+    //var lnpValue = partyMap.get('lnp') ? partyMap.get('lnp').value : 0
     
-    senateMap.get('lib').values += lnpValue + clpValue
+    //var clpValue = partyMap.get('clp') ? partyMap.get('clp').value : 0
+    
+    //senateMap.get('lib').values += lnpValue + clpValue
 
-    senateMap.get('lib').seats = ( senateMap.get('lib').values > 0 ) ? true : false ;
+    //senateMap.get('lib').seats = ( senateMap.get('lib').values > 0 ) ? true : false ;
 
-    senateMap.get('lib').percentage = ( senateMap.get('lib').values / this.totalSeats ) * 100 ;
+    //senateMap.get('lib').percentage = ( senateMap.get('lib').values / this.totalSeats ) * 100 ;
     
     partyData.sort((a,b) => b.value - a.value)
 
@@ -186,6 +242,8 @@ export class Seatstack {
       partyListRight: partyData.slice(listSize)
 
     };
+
+    console.log(renderData)
 
     return renderData
 

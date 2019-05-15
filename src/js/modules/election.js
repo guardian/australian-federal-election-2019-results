@@ -23,7 +23,11 @@ export class Election {
 
         this.tickerInterval = null
 
+        this.device = this.isMobile()
+
         this.database = googledata
+
+        this.database.places = googledata.electorates.map( (item) => item.electorate)
 
         this.database.info = []
 
@@ -65,11 +69,7 @@ export class Election {
 
             this.database.parties = new Map( googledata['partyNames'].map( (item) => [item.partyCode.toLowerCase(), item]) )
 
-            //this.database.electorates = googledata.electorates.sort((a,b) => d3.ascending(+a[self.sorter], +b[self.sorter]))
-
-            this.database.electorates = googledata.electorates.sort((a,b) => +b[self.sorter] - +a[self.sorter])
-
-            this.database.places = this.database.electorates.map( (item) => item.electorate)
+            this.database.electorates = googledata.electorates.sort((a,b) => +a[self.sorter] - +b[self.sorter])
 
             this.database.header = googledata.text[0]
 
@@ -191,13 +191,9 @@ export class Election {
 
         this.ractive.on( 'close', ( context ) => {
 
-            var el = document.getElementById('electorate-details');
+            self.database.info.display = false  
 
-            if (el.hasClass('veri__details--show')) {
-
-                el.removeClass('veri__details--show');
-
-            }
+            self.ractive.set("info", self.database.info)  
 
         });
 
@@ -205,7 +201,11 @@ export class Election {
 
             var status = (context.hover) ? party : false ;
 
-            self.components.cartogram.highlightParty(status);  
+            if (!self.device) {
+
+                self.components.cartogram.highlightParty(status);  
+                
+            }
 
         });
 
@@ -417,6 +417,7 @@ export class Election {
         if (electorate) {
             
             var info = {
+                display: true,
                 electorate: electorate,
                 candidates: candidates,
                 hideTwoParty: hideTwoParty,

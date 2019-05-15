@@ -1,4 +1,4 @@
-//import moment from 'moment'
+import moment from 'moment'
 
 export class Ticker {
 
@@ -27,7 +27,9 @@ export class Ticker {
 
     for (var i = 0; i < predictions.length; i++) {
 
-      predictions[i].announced = "Predicted" //(predictions[i].timestamp!="") ? moment(predictions[i].timestamp, 'DD-MM-YYYY h:mm:ss').fromNow() : "Predicted" ;
+      //console.log(moment.utc(moment().diff(moment(predictions[i].timestamp,"DD/MM/YYYY HH:mm:ss"))).format("m"))
+
+      predictions[i].announced = "Predicted" //(predictions[i].timestamp!="") ? moment.duration(moment.utc(moment().diff(moment(predictions[i].timestamp,"DD/MM/YYYY HH:mm:ss"))).format("m"), "minutes").humanize() : "Predicted" ;
 
       predictions[i].status = (predictions[i].prediction===predictions[i].incumbent) ? 'hold' : 'wins' ;
 

@@ -80,6 +80,19 @@ $seatstack-top: 30px !default;
 
 }
 
+#senatestack {
+
+    .seatstack__majority {
+
+        @include mq($until: tablet) {
+          top: 65px;
+        }
+        
+        
+    }
+
+}
+
 .seatstack__bar {
     margin-top: 30px;
 }
@@ -404,4 +417,24 @@ $seatstack-list-lineheight: 24px;
     .seatstack-list__partybox[data-partyname='pup'] {
         background-color: #b3b3b3;
     }
+}
+
+#senatestack .seatstack__bar li {
+    height: 40px;
+}
+
+.party_container {
+    display: inline-block;
+}
+
+.party_container[data-partyposition='alp'] {
+    float: right;
+}
+
+.party_container[data-partyposition='grn']{
+    float: right;
+}
+
+.party_container[data-partyposition='nxt']{
+    float: right;
 }

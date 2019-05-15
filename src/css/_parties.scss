@@ -1,6 +1,6 @@
 [data-partyname='alp'] { background-color: #b51800; color: #b51800; }
-/*[data-partyname='LNP'] { background-color: #FCDD03; color: #FCDD03; }
-*/[data-partyname='grn'] { background-color: #298422; color: #298422; }
+[data-partyname='LNP'] { background-color: #FCDD03; color: #FCDD03; }
+[data-partyname='grn'] { background-color: #298422; color: #298422; }
 [data-partyname='ag'] { background-color: #298422; color: #298422; }
 [data-partyname='ind'] { background-color: #B3B3B4; color: #B3B3B4; }
 [data-partyname='Pending'] { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAKklEQVQIW2N8+PDhGQYoOHnyJAMjTADEMTc3hwjAOCCFjKtWrToDkoEBAG1vFhyE06BwAAAAAElFTkSuQmCC) repeat; color: #B3B3B4; }
@@ -17,6 +17,79 @@
 [data-partyname='nxt'] { background-color: #e6711b; color: #e6711b; }
 [data-partyname='xen'] { background-color: #e6711b; color: #e6711b; }
 [data-partyname='other'] { background-color: #b3b3b3; color: #b3b3b3; }
+
+[data-partyhatch='alp'] { 
+color: #b51800;
+background-image: linear-gradient(-45deg, #b51800 25%, transparent 25%, transparent 50%, #b51800 50%, #b51800 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='LNP'] {
+color: #FCDD03; 
+background-image: linear-gradient(-45deg, #FCDD03 25%, transparent 25%, transparent 50%, #FCDD03 50%, #FCDD03 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='grn'] {
+color: #298422; 
+background-image: linear-gradient(-45deg, #298422 25%, transparent 25%, transparent 50%, #298422 50%, #298422 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='ag'] {
+color: #298422; 
+background-image: linear-gradient(-45deg, #298422 25%, transparent 25%, transparent 50%, #298422 50%, #298422 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='ind'] {
+color: #B3B3B4; 
+background-image: linear-gradient(-45deg, #B3B3B4 25%, transparent 25%, transparent 50%, #B3B3B4 50%, #B3B3B4 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='pup'] {
+color: #7D0069; 
+background-image: linear-gradient(-45deg, #7D0069 25%, transparent 25%, transparent 50%, #7D0069 50%, #7D0069 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='kap'] {
+color: #ff9b0b; 
+background-image: linear-gradient(-45deg, #ff9b0b 25%, transparent 25%, transparent 50%, #ff9b0b 50%, #ff9b0b 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='lnp'] {
+color: #005689; 
+background-image: linear-gradient(-45deg, #005689 25%, transparent 25%, transparent 50%, #005689 50%, #005689 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='lib'] {
+color: #005689; 
+background-image: linear-gradient(-45deg, #005689 25%, transparent 25%, transparent 50%, #005689 50%, #005689 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='coal'] {
+color: #005689; 
+background-image: linear-gradient(-45deg, #005689 25%, transparent 25%, transparent 50%, #005689 50%, #005689 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='cln'] {
+color: #005689; 
+background-image: linear-gradient(-45deg, #005689 25%, transparent 25%, transparent 50%, #005689 50%, #005689 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='lp'] {
+color: #005689; 
+background-image: linear-gradient(-45deg, #005689 25%, transparent 25%, transparent 50%, #005689 50%, #005689 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='np'] {
+color: #197caa; 
+background-image: linear-gradient(-45deg, #197caa 25%, transparent 25%, transparent 50%, #197caa 50%, #197caa 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='clp'] {
+color: #005689; 
+background-image: linear-gradient(-45deg, #005689 25%, transparent 25%, transparent 50%, #005689 50%, #005689 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='nat'] {
+color: #197caa; 
+background-image: linear-gradient(-45deg, #197caa 25%, transparent 25%, transparent 50%, #197caa 50%, #197caa 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='nxt'] {
+color: #e6711b; 
+background-image: linear-gradient(-45deg, #e6711b 25%, transparent 25%, transparent 50%, #e6711b 50%, #e6711b 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='xen'] {
+color: #e6711b; 
+background-image: linear-gradient(-45deg, #e6711b 25%, transparent 25%, transparent 50%, #e6711b 50%, #e6711b 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
+[data-partyhatch='other'] {
+color: #b3b3b3; 
+background-image: linear-gradient(-45deg, #b3b3b3 25%, transparent 25%, transparent 50%, #b3b3b3 50%, #b3b3b3 75%, transparent 75%, transparent);background-size: 4px 4px;}
+
 
 [data-ticker='alp'] { color: #b51800; }
 /*[data-ticker='LNP'] { color: #FCDD03; }

@@ -3,14 +3,6 @@ import hexagonsTopo from './../data/hexmap.json'
 import d3 from './d3Importer';
 import * as topojson from "topojson"
 
-/*
-d3.selection.prototype.moveToFront = function() {
-    return this.each(function(){
-        this.parentNode.appendChild(this);
-    });
-};
-*/
-
 export class Cartogram {
 
     constructor(opts) {

@@ -75,7 +75,7 @@
 							<div class="predicted-outcome">
 							    <div id="parliament-graphic"></div>
 							    <div class="election-result">Predicted outcome
-							            <div class="election-outcome {{#if outcome}}this.outcome.toLowerCase(){{/if}}">{{outcome}}</div>
+							            <div class="election-outcome {{#if outcome}}{{outcome.toLowerCase()}}{{/if}}">{{outcome}}</div>
 							     </div>
 							</div>
 
@@ -189,20 +189,20 @@
 
 					<div id="dropdown1" class="edd">
 						<input class="edd__input" placeholder="Enter electorate" type="text" name="searchblock" id="searchblock" value='{{searchBlock}}' on-keydown="keydown">
-						{{#autocomplete}}
+						{{#if autocomplete}}
 						<div class="edd__dropdown">
 		                    {{#each autocomplete}}
 		                    <div class="needsclick edd__entry" on-tap="['electorate', this]">{{this}}</div>
 		                    {{/each}}
 						</div>
-						{{/autocomplete}}
+						{{/if}}
 					</div>
 
 					<div class="left-pane">
 
 						{{#info}}
 
-						    <div id="electorate-details" class="veri__details">
+						    <div id="electorate-details" class="veri__details{{#if display}} veri__details--show{{/if}}">
 
 								<h2 class="veri__details-header" >
 									<span class="veri__details-electorate-name">{{electorate}}</span>  
@@ -390,9 +390,20 @@
 							    	
 									{{#if this.seats}}
 
-								        <li data-partyname="{{this.key}}" style="width: {{this.percentage}}%">
-								            {{#if this.notpending}}<span>{{this.values}}</span>{{/if}}
-								        </li>
+										<div class="party_container" data-partyposition="{{this.key}}" style="width: {{this.percentage}}%">
+
+									        <li data-partyhatch="{{this.key}}" style="width: {{this.currentPercentage}}%">
+									            {{#if this.notpending}}<span>{{this.value}}</span>{{/if}}
+									        </li>
+
+									        {{#if this.elected}}
+
+									        <li data-partyname="{{this.key}}" style="width: {{this.electedPercentage}}%">
+									        </li>
+
+								        	{{/if}}
+
+								        </div>
 
 									{{/if}}
 

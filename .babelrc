@@ -1,9 +1,19 @@
 {
   "env": {
     "development": {
-      "presets": [
-        "@babel/preset-env"
-      ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "IE >= 9"
+            ]
+          }
+        }
+      ]
+    ],
       "plugins": [
         "transform-import-bangtext-node",
         [

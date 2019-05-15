@@ -137,6 +137,10 @@ export class Contests {
 
       }
 
+      ALP.sort((a,b) => a.count - b.count)
+
+      LIB.sort((a,b) => a.count - b.count)
+
       t1 = ALP.reduce(function (accumulator, party) {
         return accumulator + party.count;
       }, 0);

@@ -112,13 +112,13 @@
 
 .second-best {
 
-	@include mq($from: tablet, $until: desktop) {
+	@include mq($until: desktop) {
 		margin-top: -10px;
 	}
 
 	table th {
 
-		@include mq($from: tablet, $until: desktop) {
+		@include mq($until: desktop) {
 			display: none;
 			margin-top: -10px;
 		}

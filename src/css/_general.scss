@@ -1,3 +1,5 @@
+@import 'mq';
+
 figure.element-interactive {
     margin: 0;
     padding: 0;
@@ -106,6 +108,11 @@ figure.element-interactive {
     @include mq($until: desktop) {
         height: auto;
     }
+
+    @include mq($from: desktop) {
+        min-height: 800px;
+    }
+
     &:after {
       content: "";
       display: table;

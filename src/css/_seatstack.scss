@@ -56,7 +56,7 @@ $seatstack-top: 30px !default;
 
 .seatstack__majority {
     text-align: center;
-    width: 100%;
+    width: calc(100% - 40px);
     position: absolute;
     height: 40px;
     line-height: 40px;

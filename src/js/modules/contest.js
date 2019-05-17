@@ -108,6 +108,10 @@ export class Contests {
 
     var contenders = this.match_array(opinonated, winners)
 
+    var unknow_candidates = winners.length - contenders.length
+
+    console.log("unknow_candidates: " + unknow_candidates)
+
     // Loop through each category and assign parties to the appropriate group
 
     for (block in blocks) {
@@ -118,7 +122,7 @@ export class Contests {
       var LIB = []
       var t1 = 0
       var t2 = 0
-      var unknown = 0
+      var unknown = unknow_candidates
 
       // Loop throgh the list of candidates and assign them to thier political grouping
 

@@ -88,7 +88,7 @@ export class Election {
         var self = this
 
         var seatstackOpts = {
-            totalSeats: 150,
+            totalSeats: 151,
             key: 'electorates',
             partyField: 'prediction'
         }

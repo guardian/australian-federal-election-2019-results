@@ -110,8 +110,6 @@ export class Contests {
 
     var unknow_candidates = winners.length - contenders.length
 
-    console.log("unknow_candidates: " + unknow_candidates)
-
     // Loop through each category and assign parties to the appropriate group
 
     for (block in blocks) {

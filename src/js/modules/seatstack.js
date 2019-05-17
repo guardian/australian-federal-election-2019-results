@@ -193,15 +193,15 @@ export class Seatstack {
 
     	senateMap.get('other')[breakdown[i].percentage] = (breakdown[i].value==="value") ? ( senateMap.get('other')[breakdown[i].value] / this.totalSeats ) * 100 : ( senateMap.get('other')[breakdown[i].value] / senateMap.get('other').value ) * 100 ;
 
-		var lnpValue = partyMap.get('lnp') ? partyMap.get('lnp')[breakdown[i].value] : 0
+  		var lnpValue = partyMap.get('lnp') ? partyMap.get('lnp')[breakdown[i].value] : 0
 
-		var clpValue = partyMap.get('clp') ? partyMap.get('clp')[breakdown[i].value] : 0
+  		var clpValue = partyMap.get('clp') ? partyMap.get('clp')[breakdown[i].value] : 0
 
-		senateMap.get('lib')[breakdown[i].value] += lnpValue + clpValue
+  		senateMap.get('lib')[breakdown[i].value] += lnpValue + clpValue
 
-		senateMap.get('lib')[breakdown[i].seats] = ( senateMap.get('lib')[breakdown[i].value] > 0 ) ? true : false ;
+  		senateMap.get('lib')[breakdown[i].seats] = ( senateMap.get('lib')[breakdown[i].value] > 0 ) ? true : false ;
 
-		senateMap.get('lib')[breakdown[i].percentage] = (breakdown[i].value==="value") ? ( senateMap.get('lib')[breakdown[i].value] / this.totalSeats ) * 100 : ( senateMap.get('lib')[breakdown[i].value] / senateMap.get('lib').value ) * 100 ;
+  		senateMap.get('lib')[breakdown[i].percentage] = (breakdown[i].value==="value") ? ( senateMap.get('lib')[breakdown[i].value] / this.totalSeats ) * 100 : ( senateMap.get('lib')[breakdown[i].value] / senateMap.get('lib').value ) * 100 ;
 
     }
 

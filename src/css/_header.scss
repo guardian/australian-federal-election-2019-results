@@ -2,6 +2,30 @@
 
 .mt {
 
+
+  a:link {
+    color: #005689;
+    font-family: "Guardian Text Egyptian Web", Georgia, serif;
+  }
+
+  /* visited link */
+  a:visited {
+    color: #005689;
+    font-family: "Guardian Text Egyptian Web", Georgia, serif;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: #005689;
+    font-family: "Guardian Text Egyptian Web", Georgia, serif;
+  }
+
+  /* selected link */
+  a:active {
+    color: #005689;
+    font-family: "Guardian Text Egyptian Web", Georgia, serif;
+  }
+
   .predicted-outcome {
     
     @include mq($from: wide) {

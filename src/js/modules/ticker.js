@@ -23,10 +23,6 @@ export class Ticker {
 
     var partyNames = new Map( data.partyNames.map( (item) => [item.partyCode, item]) )
 
-    predictions.sort((a,b) => b.timestamp - a.timestamp)
-
-    console.log(predictions)
-
     for (var i = 0; i < predictions.length; i++) {
 
       //console.log(moment.utc(moment().diff(moment(predictions[i].timestamp,"DD/MM/YYYY HH:mm:ss"))).format("m"))
@@ -39,7 +35,20 @@ export class Ticker {
 
     }
 
-    return predictions
+    var hastimestamp = predictions.filter( (item) => {
+      if (item.timestamp!="") {
+        item.unix = moment(item.timestamp, "MM-DD-YYYY HH:mm:ss").unix()
+        return item
+      }
+    })
+
+    hastimestamp.sort((a,b) => b.unix - a.unix)
+
+    var others = predictions.filter( (item) => item.timestamp==="")
+
+    var combined = [ ...hastimestamp, ...others ]
+
+    return combined
 
   }
 

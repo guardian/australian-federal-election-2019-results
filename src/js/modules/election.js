@@ -49,6 +49,8 @@ export class Election {
 
         this.sorter = "2PPmargin"
 
+        this.direction = "ascending"
+
         this.assemble(googledata).then( (data) => {
 
             self.createComponents()
@@ -69,7 +71,13 @@ export class Election {
 
             this.database.parties = new Map( googledata['partyNames'].map( (item) => [item.partyCode.toLowerCase(), item]) )
 
-            this.database.electorates = googledata.electorates.sort((a,b) => +a[self.sorter] - +b[self.sorter])
+            this.database.electorates = googledata.electorates.sort((a, b) => a[self.sorter].localeCompare(b[self.sorter]))
+
+            if (self.direction==='descending') {
+
+                self.database.electorates.reverse()
+
+            }
 
             this.database.header = googledata.text[0]
 
@@ -209,6 +217,26 @@ export class Election {
 
         });
 
+        this.ractive.on( 'tablesort', ( context, column ) => {
+
+            self.sorter = column
+
+            self.direction = (context.node.getAttribute('data-sortdirection')==='descending') ? 'ascending' : 'descending' ;
+
+            context.node.setAttribute('data-sortdirection', self.direction);
+
+            self.database.electorates = self.database.electorates.sort((a, b) => a[column].localeCompare(b[column]))
+
+            if (self.direction==='descending') {
+
+                self.database.electorates.reverse()
+
+            }
+
+            self.ractive.set("electorates", self.database.electorates)
+
+        });
+
         this.ractive.on( 'electorate', ( context, electorate ) => {
 
             self.database.autocomplete = []
@@ -246,7 +274,6 @@ export class Election {
         });
 
         this.initFeed()
-
 
     }
 

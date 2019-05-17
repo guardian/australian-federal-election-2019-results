@@ -1,7 +1,7 @@
 //import * as d3 from 'd3'
 import d3 from './d3Importer';
 const COALITION = ['lib', 'lnp', 'nat', 'clp']
-const SENATE = ['lib', 'nat', 'pending', 'other', 'alp', 'grn', 'nxt']
+const SENATE = ['lib', 'nat', 'on', 'pending', 'other', 'alp', 'grn', 'ca']
 
 export class Seatstack {
 
@@ -72,7 +72,7 @@ export class Seatstack {
 
       TOTAL_SEATS: this.totalSeats,
 
-      MAJORITY_SEATS: Math.ceil( this.totalSeats / 2 ) + 1,
+      MAJORITY_SEATS: Math.ceil( this.totalSeats / 2 ),
 
       partyData: partyData,
 

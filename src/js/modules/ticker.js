@@ -25,6 +25,8 @@ export class Ticker {
 
     predictions.sort((a,b) => b.timestamp - a.timestamp)
 
+    console.log(predictions)
+
     for (var i = 0; i < predictions.length; i++) {
 
       //console.log(moment.utc(moment().diff(moment(predictions[i].timestamp,"DD/MM/YYYY HH:mm:ss"))).format("m"))

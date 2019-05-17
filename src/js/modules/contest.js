@@ -25,6 +25,25 @@ export class Contests {
       return a.indexOf(b) > -1;
   }
 
+  match_array(a, b) {
+
+      if (Array.isArray(b)) {
+
+          var filteredArray = b.filter(function( c ) {
+              if (a.indexOf(c) > -1) {
+                  return c;
+              }
+          });
+
+          return filteredArray
+
+      }
+
+      return  (a.indexOf(b) > -1) ? b : [] ;
+
+  }
+
+
   ideas(data) {
 
     var self = this
@@ -85,6 +104,10 @@ export class Contests {
 
     var winners = Array.from(countMap.keys())
 
+    var opinonated = data.positions.map( (item) => item.party_or_candidate)
+
+    var contenders = this.match_array(opinonated, winners)
+
     // Loop through each category and assign parties to the appropriate group
 
     for (block in blocks) {
@@ -103,15 +126,15 @@ export class Contests {
 
       let libPOS = posMap.get('lib')[self.categories[block].key]
 
-      for (var i = 0; i < winners.length; i++) {
+      for (var i = 0; i < contenders.length; i++) {
 
-        let count = countMap.get( winners[i])
+        let count = countMap.get( contenders[i])
 
         let percentage = ( count / 84 ) * 100
 
-        let position = posMap.get( winners[i].toLowerCase() )[self.categories[block].key]
+        let position = posMap.get( contenders[i].toLowerCase() )[self.categories[block].key]
 
-        let party = winners[i].toLowerCase()
+        let party = contenders[i].toLowerCase()
 
         if (!self.contains(self.parties, party.toUpperCase())) {
 

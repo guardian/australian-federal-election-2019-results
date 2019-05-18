@@ -37,6 +37,10 @@ export class Election {
 
         this.database.feed = null
 
+        this.database.isApp = (window.location.origin === "file://" || window.location.origin === null) ? true : false 
+
+        this.database.isAndroidApp = (self.database.isApp && /(android)/i.test(navigator.userAgent) ) ? true : false
+
         this.database.commas = (num) => {
             var result = parseFloat(num).toFixed();
             result = result.replace(/(\d)(?=(\d{3})+$)/g, '$1,');

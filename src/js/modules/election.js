@@ -289,7 +289,6 @@ export class Election {
 
         var cartogramOpts = {
             selectCallback: this.selectElectorate.bind(this),
-            tooltipCallback: this.cartogramTooltipClick.bind(this),
             mouseBindings: self.isMobile() ? false : true
         }
 
@@ -298,6 +297,8 @@ export class Election {
         self.components.cartogram.render(self.database)
 
         self.newsFeed()
+
+        self.resize()
     }
 
     newsFeed() {
@@ -481,11 +482,6 @@ export class Election {
 
     }
 
-    cartogramTooltipClick(electorate) {
-        this.components.details.selectElectorate(electorate);
-        this.freezeScrolling();
-    }
-
     updated() {
 
         return moment().format("hh:mm A")
@@ -502,9 +498,11 @@ export class Election {
 
             document.body.data = setTimeout( function() { 
 
-                // Do what you need to do
+                console.log("Map resize")
 
-            }, 200);
+                self.components.cartogram.createMap(); 
+
+            }, 800);
 
         });
 

@@ -13,11 +13,9 @@ export class Cartogram {
 
         this.selectElectorateCallback = this.opts.selectCallback;
 
-        this.width = this.el.getBoundingClientRect().width
-
-        this.height = this.width * 0.85
-
         this.currentSelection = null
+
+        this.initiated = false
 
         this.createMap()
 
@@ -40,6 +38,24 @@ export class Cartogram {
     createMap() {
 
         var self = this
+
+        if (this.initiated) {
+
+            d3.select("#auscartogram svg").remove();
+
+            d3.select(".cartogram__tooltip").remove();
+
+            this.tooltip = null
+
+            this.tooltipElectorate = null
+
+        }
+
+        this.initiated = true
+
+        this.width = this.el.getBoundingClientRect().width
+
+        this.height = this.width * 0.85
 
         self.projection = d3.geoMercator()
             .center([135, -28.0])

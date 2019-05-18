@@ -1,21 +1,19 @@
 import { Election } from './modules/election'
 import loadJson from '../components/load-json/'
 
-//const key = "https://interactive.guim.co.uk/docsdata/1v_Ks8ZQxJv2vHt2DjYYf5UL9qAHgtuPlSrl2sOgVoz4.json"; // 2016
-
 const key = "https://interactive.guim.co.uk/docsdata/1d3PX0uc-5KW9sOCaAwuLh2EX4ofLZjokLk1pmA2sRCE.json"; // 2019
 
 let social = {
 
     title : "Live Australian election results",
 
-    url : "https://www.theguardian.com/australia-news/ng-interactive/2019/apr/02/the-complete-2019-australian-federal-budget-choose-what-matters-to-you",
+    url : "https://www.theguardian.com/australia-news/ng-interactive/2019/may/18/live-results-for-the-2019-australian-election-track-the-votes",
 
-    fbImg : null,
+    fbImg : "",
 
-    twImg : null,
+    twImg : "",
 
-    twHash : "#Election #auspol",
+    twHash : "#auvotes19 #ausvotes",
 
     message : "Track the latest federal election updates"
 

@@ -19,9 +19,9 @@
     }
 
 	@include mq($from: mobile, $until: tablet) {
-		background-position: right -200px bottom;
-		background-size: 480px 300px;
-		background-image: url('<%= path %>/assets/imgs/parliament.png');
+		background-position: right -100px bottom;
+		background-size: 300px 300px;
+		background-image: url('<%= path %>/assets/imgs/parliament-small.png');
 	}
 
 	@include mq($from: tablet, $until: desktop) {
@@ -913,6 +913,24 @@
 
 }
 
+.contest__majority_label {
+	font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 13px;
+	top: 0px;
+	position: absolute;
+    text-align: center;
+    width: 100%;
+	color: #767676;
+}
+
+.contest__majority_label:nth-of-type(2n) {
+	display: none;
+}
+
+.contest__majority_label:nth-child(2n) {
+	display: none;
+}
+
 .contest__total {
 	margin-left: 10px;
 	font-size: 11px;
@@ -935,4 +953,12 @@
 
 .mt-mobile-outcome span {
 	font-weight: 600;
+}
+
+.isApp {
+	margin-top: 60px;
+}
+
+.appSticky {
+	top: 40px;
 }

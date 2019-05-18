@@ -5,7 +5,7 @@
 
             <div class="mt-container">
                 <div class="mt-tk__section">
-                    <div class="mt-tk sticky">
+                    <div class="mt-tk sticky{{#if isAndroidApp}} appSticky{{/if}}">
                         <div class="mt-tk__left">
                             <div class="mt-tk__left-live">
                                 LIVE
@@ -351,6 +351,8 @@
 									<div class="mt-bar-text"><div class="mt-bar-text-container"><span>{{this.text}}</span></div></div>
 
 									<div class="mt-bar-holder">
+
+										<div class="contest__majority_label">76 seats to win</div>
 
 										<div class="contest__majority"></div>
 

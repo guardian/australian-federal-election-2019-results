@@ -1,49 +1,51 @@
 @import 'mq';
 
-.sticky {
-
-}
-
-.new-header__logo {
-	
-}
-
 .element-atom {
 	margin-top: 0px!important;
 }
 
 .mt-header {
-	background-image: url('<%= path %>/assets/imgs/parliament.png');
+	
 	background-repeat: no-repeat;
-	background-size: 544px 315px;
+	
 	position: relative;
 	background-color: #f1f1f1;
 	padding: 8px 0;
 	overflow: hidden;
-	height: 295px;
+	height: 300px;
 
     @include mq($until: mobile) {
 		background-image: none;
     }
 
 	@include mq($from: mobile, $until: tablet) {
-		background-position: right -350px bottom;
+		background-position: right -200px bottom;
+		background-size: 480px 300px;
+		background-image: url('<%= path %>/assets/imgs/parliament.png');
 	}
 
 	@include mq($from: tablet, $until: desktop) {
-		background-position: right -250px bottom;
+		background-position: right 50px bottom;
+		background-size: 480px 300px;
+		background-image: url('<%= path %>/assets/imgs/parliament.png');
 	}
 
 	@include mq($from: desktop, $until: leftCol) {
-		background-position: right 50px bottom;
+		background-position: right 100px bottom;
+		background-size: 645px 300px;
+		background-image: url('<%= path %>/assets/imgs/parliament-big.png');
 	}
 
 	@include mq($from: leftCol, $until: wide) {
-		background-position: right 75px bottom;
+		background-position: right 100px bottom;
+		background-size: 645px 300px;
+		background-image: url('<%= path %>/assets/imgs/parliament-big.png');
 	}
 
 	@include mq($from: wide) {
-		background-position: right 150px bottom;
+		background-position: right 100px bottom;
+		background-size: 645px 300px;
+		background-image: url('<%= path %>/assets/imgs/parliament-big.png');
 	}
 
 }

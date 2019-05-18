@@ -5,7 +5,7 @@ const key = "https://interactive.guim.co.uk/docsdata/1d3PX0uc-5KW9sOCaAwuLh2EX4o
 
 let social = {
 
-    title : "Live Australian election results",
+    title : "Live results for the 2019 Australian election: track the votes",
 
     url : "https://www.theguardian.com/australia-news/ng-interactive/2019/may/18/live-results-for-the-2019-australian-election-track-the-votes",
 
@@ -15,7 +15,7 @@ let social = {
 
     twHash : "#auvotes19 #ausvotes",
 
-    message : "Track the latest federal election updates"
+    message : "Live results for the 2019 Australian election: track the votes"
 
 };
 

@@ -7,6 +7,19 @@
         position: relative;
         width: 70%;
     }
+
+    @include mq($from: desktop, $until: leftCol) {
+        width: calc(100% - 380px);
+    }
+
+    @include mq($from: leftCol, $until: wide) {
+        width: calc(100% - 380px);
+    }
+
+    @include mq($from: wide) {
+        width: 70%;
+    }
+
 }
 
 #auscartogram {

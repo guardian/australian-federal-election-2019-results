@@ -55,6 +55,8 @@ export class Election {
 
         this.direction = "ascending"
 
+        this.selectedElectorate = null
+
         this.assemble(googledata).then( (data) => {
 
             self.createComponents()
@@ -416,6 +418,14 @@ export class Election {
 
         this.database.results = new Map( self.database.electorates.map( (item) => [item.electorate, item]) )
 
+        if (self.selectedElectorate!=null && self.database.info.display) {
+
+            console.log(`Update data for ${self.selectedElectorate}`)
+
+            self.selectElectorate(self.selectedElectorate)
+
+        }
+
     }
 
     selectElectorate(electorate) {
@@ -425,12 +435,11 @@ export class Election {
         this.selectedElectorate = electorate;
         var result = this.database.results.get(electorate)
         var aecResult = this.database.divisions.get(electorate)
-        var candidates = aecResult.candidates.sort((a,b) => a.votesTotal - b.votesTotal)
+        var candidates = aecResult.candidates.sort((a,b) => b.votesTotal - a.votesTotal)
         
-
         var hideTwoParty = false
         if (Array.isArray(aecResult.twoCandidatePreferred)) {
-            var twoParty = aecResult.twoCandidatePreferred.sort((a,b) => a.votesTotal - b.votesTotal)
+            var twoParty = aecResult.twoCandidatePreferred.sort((a,b) => b.votesTotal - a.votesTotal)
             var nameField = 'party_long'
         } else {
             var hideTwoParty = true

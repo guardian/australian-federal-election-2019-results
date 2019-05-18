@@ -459,3 +459,7 @@ $seatstack-list-lineheight: 24px;
 .party_container[data-partyposition='nxt']{
     float: right;
 }
+
+.party_container[data-partyposition="ca"] {
+    float: right;
+}

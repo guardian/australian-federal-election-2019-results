@@ -36,10 +36,15 @@ export class Ticker {
     }
 
     var hastimestamp = predictions.filter( (item) => {
+
       if (item.timestamp!="") {
+
         item.unix = moment(item.timestamp, "MM-DD-YYYY HH:mm:ss").unix()
+
         return item
+
       }
+      
     })
 
     hastimestamp.sort((a,b) => b.unix - a.unix)

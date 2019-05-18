@@ -81,14 +81,14 @@
 }
 
 .veri__party-table-fullname {
-    display: none;
+
     @include mq(tablet) {
         display: inline;
     }
 }
 
 .veri__party-table-abbrv {
-    display: inline;
+    display: none;
     @include mq(tablet) {
         display: none;
     }
